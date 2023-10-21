@@ -2,6 +2,8 @@ import enum
 
 from python_selenium_core.utilities.file_reader import FileReader
 
+from python_selenium import ROOT_PATH_PROJECT
+
 
 class JavaScript(enum.Enum):
     AutoAcceptAlerts = "auto_accept_alerts.js"
@@ -42,4 +44,4 @@ class JavaScript(enum.Enum):
 
     @property
     def script_from_file(self):
-        return FileReader.get_resource_file(f"java_scripts\\{self.value}")
+        return FileReader.get_resource_file(f"java_scripts\\{self.value}", ROOT_PATH_PROJECT)
