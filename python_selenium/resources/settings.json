@@ -5,8 +5,8 @@
   "is_element_highlight_enabled": true,
   "driver_settings": {
     "chrome": {
-      "use_webdriver_manager": false,
-      "web_driver_version": "114.0.5735.90",
+      "use_webdriver_manager": true,
+      "web_driver_version": "Latest",
       "capabilities": {
       },
       "options": {
