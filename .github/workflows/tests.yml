@@ -15,7 +15,6 @@ on:
       - .github/workflows/publishing.yml
       - .github/workflows/tests.yml
       - setup.cfg
-      - setup.py
   pull_request:
     branches: [ "main" ]
     paths-ignore:
@@ -27,7 +26,6 @@ on:
       - .github/workflows/publishing.yml
       - .github/workflows/tests.yml
       - setup.cfg
-      - setup.py
 
 permissions:
   contents: read
