@@ -1,6 +1,5 @@
 import pytest
 
-from python_selenium.browsers.browser_service import BrowserService
 from python_selenium.browsers.java_script import JavaScript
 from collections import defaultdict
 

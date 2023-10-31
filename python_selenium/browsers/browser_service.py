@@ -106,7 +106,8 @@ class Browser:
         self.network = None
         self.java_script_handling = None
         self.__logger: LocalizedLogger = BrowserService.Instance.service_provider.logger()
-        self.__localization_manager: LocalizationManager = BrowserService.Instance.service_provider.localization_manager()
+        localization_manager = BrowserService.Instance.service_provider.localization_manager()
+        self.__localization_manager: LocalizationManager = localization_manager
         self.browser_profile: BrowserProfile = BrowserService.Instance.service_provider.browser_profile()
         self.conditional_wait: ConditionalWait = BrowserService.Instance.service_provider.conditional_wait()
         timeout_configuration: TimeoutConfiguration = BrowserService.Instance.service_provider.timeout_configuration()
@@ -136,7 +137,7 @@ class Browser:
 
     @property
     def __navigate(self):
-        return #BrowserNavigation(self.driver)
+        return  # BrowserNavigation(self.driver)
 
     @property
     def current_url(self) -> str:
@@ -176,7 +177,8 @@ class Browser:
         self.__navigate.refresh()
 
     def tabs(self):
-        return #BrowserTabNavigation(self.driver)
+        # return BrowserTabNavigation(self.driver)
+        raise NotImplementedError
 
     def handle_alert(self, alert_action: AlertAction, text: str = None):
         try:

@@ -28,5 +28,3 @@ class BrowserProfile:
         if self.browser_name.lower() == "chrome":
             return ChromeSettings(self.__settings_file)
         raise ValueError(f"No assigned behaviour for retrieving DriverSettings for browser {self.browser_name}")
-
-

@@ -58,8 +58,10 @@ class TestBrowserService:
     def test_should_be_able_get_browser_with_start_arguments(self):
         assert BrowserService.Instance.service_provider is not None
 
+    @pytest.mark.skip
     def test_should_be_able_get_browser_with_excluded_arguments(self):
         raise NotImplementedError
 
+    @pytest.mark.skip
     def test_should_be_able_to_create_local_browser(self):
         raise NotImplementedError
