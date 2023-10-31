@@ -25,7 +25,7 @@
           "Performance": "All"
       },
       "excluded_arguments": [ "enable-automation" ],
-      "start_arguments": [],
+      "start_arguments": ["--headless"],
       "page_load_strategy": "normal"
     }
   },
