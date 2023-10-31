@@ -1,4 +1,5 @@
 import enum
+import os.path
 
 from python_selenium_core.utilities.file_reader import FileReader
 
@@ -44,4 +45,4 @@ class JavaScript(enum.Enum):
 
     @property
     def script_from_file(self):
-        return FileReader.get_resource_file(f"java_scripts\\{self.value}", ROOT_PATH_PROJECT)
+        return FileReader.get_resource_file(os.path.join("java_scripts", self.value), ROOT_PATH_PROJECT)
