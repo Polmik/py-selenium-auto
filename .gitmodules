@@ -1,4 +1,0 @@
-[submodule "python-selenium-core"]
-	path = python-selenium-core
-	url = https://github.com/Polmik/python-selenium-core.git
-	branch=main

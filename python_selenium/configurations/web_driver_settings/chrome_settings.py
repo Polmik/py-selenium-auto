@@ -46,4 +46,3 @@ class ChromeSettings(DriverSettings):
 
     def __set_chrome_excluded_arguments(self, options):
         options.add_experimental_option("excludeSwitches", self._browser_excluded_arguments)
-
