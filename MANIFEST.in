@@ -1,1 +1,1 @@
-recursive-include python_selenium/resources *.*
+recursive-include py_selenium_auto/resources *.*

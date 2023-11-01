@@ -1,7 +1,7 @@
 import enum
 import os.path
 
-from python_selenium_core.utilities.file_reader import FileReader
+from py_selenium_auto_core.utilities.file_reader import FileReader
 
 from py_selenium_auto import ROOT_PATH_PROJECT
 

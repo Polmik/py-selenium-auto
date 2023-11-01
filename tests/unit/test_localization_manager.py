@@ -1,5 +1,10 @@
+import os.path
+from pathlib import Path
+
 import pytest
 import re
+
+from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 
 from py_selenium_auto.browsers.browser_service import BrowserService
 from py_selenium_auto.logging.log_level import LogLevel
@@ -7,6 +12,7 @@ from py_selenium_auto.logging.log_level import LogLevel
 
 class TestLocalizationManager:
 
+    log_path = os.path.join(Path(RootPathHelper.calling_root_path()).parent, "Log", "log.log")
     navigation_message = "Navigate to URL - 'test'"
     test_url = "test"
     navigation_key = "loc.browser.navigate"
@@ -21,7 +27,6 @@ class TestLocalizationManager:
             LogLevel.Warn,
         ]
     )
-    @pytest.mark.skip
     def test_should_be_able_log_localized_message(self, log_level):
         localized_logger = BrowserService.Instance.localized_logger
         if log_level == LogLevel.Info:
@@ -37,10 +42,12 @@ class TestLocalizationManager:
         else:
             raise ValueError(f"Cannot process log level: {log_level}")
 
-        log_message = ""  # TODO: read from file
+        assert os.path.exists(self.log_path), "Log should exist"
+        with open(self.log_path, "r", encoding="utf-8") as file:
+            log_message = file.read()
         # Example: "2023-10-21 13:07:40,653 [root] [INFO ]  Navigate to URL - 'test'"
-        result = re.findall(f".*?{log_level.value}.*?{self.navigation_message}", log_message)
-        assert len(result) > 0, \
+        results = re.findall(f".*?{log_level.value}.*?{self.navigation_message}", log_message)
+        assert len(results) > 0, \
             f"Message should be localized. Expected: {self.navigation_message}, actual: {log_message}"
 
     def test_should_be_able_to_localize_logger_message(self):

@@ -2,9 +2,9 @@ import json
 from typing import Callable
 
 from dependency_injector.providers import Singleton, Factory
-from python_selenium_core.applications.startup import ServiceProvider as CoreServiceProvider, Startup
-from python_selenium_core.localization.localization_manager import LocalizationManager
-from python_selenium_core.utilities.file_reader import FileReader
+from py_selenium_auto_core.applications.startup import ServiceProvider as CoreServiceProvider, Startup
+from py_selenium_auto_core.localization.localization_manager import LocalizationManager
+from py_selenium_auto_core.utilities.file_reader import FileReader
 
 from py_selenium_auto import ROOT_PATH_PROJECT
 from py_selenium_auto.configurations.browser_profile import BrowserProfile

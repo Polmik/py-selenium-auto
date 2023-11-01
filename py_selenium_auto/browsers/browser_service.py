@@ -3,13 +3,13 @@ from __future__ import annotations
 import abc
 from typing import Any, Optional
 
-from python_selenium_core.applications.application import Application
-from python_selenium_core.applications.core_service import CoreService
-from python_selenium_core.localization.localization_manager import LocalizationManager
-from python_selenium_core.localization.localized_logger import LocalizedLogger
-from python_selenium_core.logging.logger import Logger
-from python_selenium_core.utilities.action_retrier import ActionRetrier
-from python_selenium_core.waitings.conditional_wait import ConditionalWait
+from py_selenium_auto_core.applications.application import Application
+from py_selenium_auto_core.applications.core_service import CoreService
+from py_selenium_auto_core.localization.localization_manager import LocalizationManager
+from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
+from py_selenium_auto_core.logging.logger import Logger
+from py_selenium_auto_core.utilities.action_retrier import ActionRetrier
+from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 from selenium.common import WebDriverException, NoAlertPresentException
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.chrome.webdriver import WebDriver as ChromeWebDriver
