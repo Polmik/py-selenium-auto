@@ -3,7 +3,7 @@ import os
 
 from selenium.webdriver.common.options import ArgOptions
 
-from automation_selenium import ROOT_PATH_PROJECT
+from py_selenium_auto import ROOT_PATH_PROJECT
 
 
 class DriverSettings(abc.ABC):

@@ -13,7 +13,7 @@ with _open("README.md") as readme_file:
 with _open("requirements.txt") as requirements_file:
     requirements = requirements_file.readlines()
 
-setuptools.setup(name="automation-selenium",
+setuptools.setup(name="py-selenium-auto",
                  version="0.3.1",
                  description="Selenium for Python",
                  long_description=description,
@@ -22,10 +22,10 @@ setuptools.setup(name="automation-selenium",
                  author_email="mrpolmik@hotmail.com",
                  maintainer="Egor Ryaboshapko",
                  maintainer_email="mrpolmik@hotmail.com",
-                 url="https://github.com/Polmik/automation-selenium",
+                 url="https://github.com/Polmik/py-selenium-auto",
                  keywords=['testing', 'selenium', 'driver', 'test automation'],
                  include_package_data=True,
-                 packages=setuptools.find_packages(include=['automation_selenium*']),
+                 packages=setuptools.find_packages(include=['py-selenium-auto*']),
                  install_requires=requirements,
                  zip_safe=True,
                  platforms=["any"],

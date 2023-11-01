@@ -1,5 +1,5 @@
-from automation_selenium.logging.log_level import LogLevel
-from automation_selenium.logging.logging_parameters import LoggingParameters
+from py_selenium_auto.logging.log_level import LogLevel
+from py_selenium_auto.logging.logging_parameters import LoggingParameters
 
 
 class HttpExchangeLoggingOptions:

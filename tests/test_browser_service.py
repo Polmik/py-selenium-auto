@@ -1,6 +1,6 @@
 import pytest
 
-from automation_selenium.browsers.browser_service import BrowserService
+from py_selenium_auto.browsers.browser_service import BrowserService
 
 
 class TestBrowserService:

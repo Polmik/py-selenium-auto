@@ -6,9 +6,9 @@ from python_selenium_core.applications.startup import ServiceProvider as CoreSer
 from python_selenium_core.localization.localization_manager import LocalizationManager
 from python_selenium_core.utilities.file_reader import FileReader
 
-from automation_selenium import ROOT_PATH_PROJECT
-from automation_selenium.configurations.browser_profile import BrowserProfile
-from automation_selenium.configurations.timeout_configuration import TimeoutConfiguration
+from py_selenium_auto import ROOT_PATH_PROJECT
+from py_selenium_auto.configurations.browser_profile import BrowserProfile
+from py_selenium_auto.configurations.timeout_configuration import TimeoutConfiguration
 
 
 class ServiceProvider(CoreServiceProvider):

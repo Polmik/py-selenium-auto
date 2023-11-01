@@ -1,5 +1,5 @@
-from automation_selenium.configurations.web_driver_settings.chrome_settings import ChromeSettings
-from automation_selenium.configurations.web_driver_settings.driver_settings import DriverSettings
+from py_selenium_auto.configurations.web_driver_settings.chrome_settings import ChromeSettings
+from py_selenium_auto.configurations.web_driver_settings.driver_settings import DriverSettings
 
 
 class BrowserProfile:
