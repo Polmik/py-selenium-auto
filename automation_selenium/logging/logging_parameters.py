@@ -1,4 +1,4 @@
-from python_selenium.logging.log_level import LogLevel
+from automation_selenium.logging.log_level import LogLevel
 
 
 class LoggingParameters:

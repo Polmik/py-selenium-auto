@@ -3,7 +3,7 @@ import os.path
 
 from python_selenium_core.utilities.file_reader import FileReader
 
-from python_selenium import ROOT_PATH_PROJECT
+from automation_selenium import ROOT_PATH_PROJECT
 
 
 class JavaScript(enum.Enum):

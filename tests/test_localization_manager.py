@@ -1,8 +1,8 @@
 import pytest
 import re
 
-from python_selenium.browsers.browser_service import BrowserService
-from python_selenium.logging.log_level import LogLevel
+from automation_selenium.browsers.browser_service import BrowserService
+from automation_selenium.logging.log_level import LogLevel
 
 
 class TestLocalizationManager:

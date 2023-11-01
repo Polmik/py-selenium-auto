@@ -1,7 +1,7 @@
 # Selenium for Python
 
-[![Tests](https://github.com/Polmik/python-selenium/actions/workflows/tests.yml/badge.svg)](https://github.com/Polmik/python-selenium/actions/workflows/tests.yml)
-[![codecov](https://codecov.io/gh/Polmik/python-selenium/branch/main/graph/badge.svg)](https://codecov.io/gh/Polmik/python-selenium)
+[![Tests](https://github.com/Polmik/automation-selenium/actions/workflows/tests.yml/badge.svg)](https://github.com/Polmik/automation-selenium/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/Polmik/automation-selenium/branch/main/graph/badge.svg)](https://codecov.io/gh/Polmik/automation-selenium)
 
 ### Introduction
 

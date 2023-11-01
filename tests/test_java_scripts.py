@@ -1,6 +1,6 @@
 import pytest
 
-from python_selenium.browsers.java_script import JavaScript
+from automation_selenium.browsers.java_script import JavaScript
 from collections import defaultdict
 
 

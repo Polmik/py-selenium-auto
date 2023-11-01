@@ -15,11 +15,11 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.chrome.webdriver import WebDriver as ChromeWebDriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-from python_selenium.browsers.browser_startup import BrowserStartup, ServiceProvider
-from python_selenium.browsers.enums.alert_actions import AlertAction
-from python_selenium.browsers.java_script import JavaScript
-from python_selenium.configurations.browser_profile import BrowserProfile
-from python_selenium.configurations.timeout_configuration import TimeoutConfiguration
+from automation_selenium.browsers.browser_startup import BrowserStartup, ServiceProvider
+from automation_selenium.browsers.enums.alert_actions import AlertAction
+from automation_selenium.browsers.java_script import JavaScript
+from automation_selenium.configurations.browser_profile import BrowserProfile
+from automation_selenium.configurations.timeout_configuration import TimeoutConfiguration
 
 
 class _BrowserService(CoreService):
