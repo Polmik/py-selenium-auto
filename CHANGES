@@ -1,0 +1,20 @@
+v0.3.3
+* Updated setting's format
+* Updated requirements.txt
+* Added BrowserNavigation
+* Code refactoring. Renamed BrowserService to BrowserServices
+* Added documentations for methods and classes
+
+v0.3.2
+* Updated dependencies due to package renaming
+
+v0.3.1
+* Updated project structure
+* Renamed package to py_selenium_auto_core
+* Added setup.py
+* Added some tests
+* Added .coveragerc
+* Added yml files to test and publish
+* Updated README.md
+* First publish on PyPi
+

@@ -3,29 +3,7 @@
 
 name: Tests
 
-on:
-  push:
-    branches: [ "main" ]
-    paths-ignore:
-      - CHANGELOG.md
-      - README.md
-      - LICENSE
-      - .gitignore
-      - .coveragerc
-      - .github/workflows/publishing.yml
-      - .github/workflows/tests.yml
-      - setup.cfg
-  pull_request:
-    branches: [ "main" ]
-    paths-ignore:
-      - CHANGELOG.md
-      - README.md
-      - LICENSE
-      - .gitignore
-      - .coveragerc
-      - .github/workflows/publishing.yml
-      - .github/workflows/tests.yml
-      - setup.cfg
+on: [push, pull_request, workflow_dispatch]
 
 permissions:
   contents: read

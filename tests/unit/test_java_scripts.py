@@ -22,5 +22,4 @@ class TestJavaScripts:
             if values.count(value) > 1:
                 counter[value].append(js_script)
 
-        assert len(counter.keys()) == 0, \
-            f"some duplicates where found among JavaScripts:\n{counter}"
+        assert len(counter.keys()) == 0, f"some duplicates where found among JavaScripts:\n{counter}"

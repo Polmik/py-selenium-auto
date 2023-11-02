@@ -9,19 +9,19 @@ class BrowserProfile:
 
     @property
     def browser_name(self) -> str:
-        return self.__settings_file.get("browser_name")
+        return self.__settings_file.get("browserName")
 
     @property
     def is_remote(self) -> bool:
-        return self.__settings_file.get("is_remote")
+        return self.__settings_file.get("isRemote")
 
     @property
     def remote_connection_utl(self) -> str:
-        return self.__settings_file.get("remote_connection_utl")
+        return self.__settings_file.get("remoteConnectionUtl")
 
     @property
     def is_element_highlight_enabled(self) -> bool:
-        return self.__settings_file.get("is_element_highlight_enabled")
+        return self.__settings_file.get("isElementHighlightEnabled")
 
     @property
     def driver_settings(self) -> DriverSettings:

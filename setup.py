@@ -14,7 +14,7 @@ with _open("requirements.txt") as requirements_file:
     requirements = requirements_file.readlines()
 
 setuptools.setup(name="py-selenium-auto",
-                 version="0.3.2",
+                 version="0.3.3",
                  description="Selenium for Python",
                  long_description=description,
                  long_description_content_type="text/markdown",

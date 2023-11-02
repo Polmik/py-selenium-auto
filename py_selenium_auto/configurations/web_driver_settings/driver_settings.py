@@ -18,11 +18,11 @@ class DriverSettings(abc.ABC):
 
     @property
     def web_driver_version(self) -> str:
-        return self._driver_settings.get("web_driver_version", "Latest")
+        return self._driver_settings.get("webDriverVersion", "Latest")
 
     @property
     def system_architecture(self) -> str:
-        return self._driver_settings.get("system_architecture", "Auto")
+        return self._driver_settings.get("systemArchitecture", "Auto")
 
     @property
     @abc.abstractmethod
@@ -36,7 +36,7 @@ class DriverSettings(abc.ABC):
 
     @property
     def page_load_strategy(self) -> str:
-        return self._driver_settings.get("page_load_strategy", "Normal")
+        return self._driver_settings.get("pageLoadStrategy", "Normal")
 
     @property
     def download_dir(self) -> str:
@@ -73,31 +73,31 @@ class DriverSettings(abc.ABC):
     @property
     def _logging_references(self) -> dict:
         if not self.__logging_preferences:
-            self.__logging_preferences = self._driver_settings.get('logging_preferences')
+            self.__logging_preferences = self._driver_settings.get('loggingPreferences')
         return self.__logging_preferences
 
     @property
     def _browser_excluded_arguments(self) -> list:
         if not self.__excluded_arguments:
-            self.__excluded_arguments = self._driver_settings.get('excluded_arguments')
+            self.__excluded_arguments = self._driver_settings.get('excludedArguments')
         return self.__excluded_arguments
 
     @property
     def _browser_start_arguments(self) -> list:
         if not self.__start_arguments:
-            self.__start_arguments = self._driver_settings.get('start_arguments')
+            self.__start_arguments = self._driver_settings.get('startArguments')
         return self.__start_arguments
 
     @property
     def _driver_settings(self) -> dict:
-        return self._settings_file.get("driver_settings").get(self.browser_name)
+        return self._settings_file.get("driverSettings").get(self.browser_name)
 
     @property
     def _use_webdriver_manager(self) -> bool:
-        return self._driver_settings.get("use_webdriver_manager", False)
+        return self._driver_settings.get("useWebdriverManager", True)
 
     def _set_page_load_strategy(self, options: ArgOptions):
-        options.page_load_strategy = self._driver_settings.get('page_load_strategy')
+        options.page_load_strategy = self._driver_settings.get('pageLoadStrategy')
 
     def _set_capabilities(self, options: ArgOptions):
         for n, v in self._browser_capabilities.items():
