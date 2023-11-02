@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from py_selenium_auto.browsers.browser_factory.browser_factory import BrowserFactory
 
 
-class BrowserService:
+class BrowserServices:
     class _BrowserService(CoreServices):
 
         def __init__(self):

@@ -6,7 +6,7 @@ import re
 
 from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 
-from py_selenium_auto.browsers.browser_service import BrowserService
+from py_selenium_auto.browsers.browser_services import BrowserServices
 from py_selenium_auto.logging.log_level import LogLevel
 
 
@@ -28,7 +28,7 @@ class TestLocalizationManager:
         ]
     )
     def test_should_be_able_log_localized_message(self, log_level):
-        localized_logger = BrowserService.Instance.localized_logger
+        localized_logger = BrowserServices.Instance.localized_logger
         if log_level == LogLevel.Info:
             localized_logger.info(self.navigation_key, self.test_url)
         elif log_level == LogLevel.Debug:
@@ -51,7 +51,7 @@ class TestLocalizationManager:
             f"Message should be localized. Expected: {self.navigation_message}, actual: {log_message}"
 
     def test_should_be_able_to_localize_logger_message(self):
-        message = BrowserService.Instance.service_provider.localization_manager().get_localized_message(
+        message = BrowserServices.Instance.service_provider.localization_manager().get_localized_message(
             self.navigation_key,
             self.test_url,
         )

@@ -24,18 +24,18 @@ class Browser(Application):
 
     def __init__(self, web_driver: WebDriver):
         # Lazy import to resolve circular import
-        from py_selenium_auto.browsers.browser_service import BrowserService
+        from py_selenium_auto.browsers.browser_services import BrowserServices
 
         self._driver: WebDriver = web_driver
         self.network = None
         self.java_script_engine = None
-        self._logger: LocalizedLogger = BrowserService.Instance.service_provider.localized_logger()
+        self._logger: LocalizedLogger = BrowserServices.Instance.service_provider.localized_logger()
         self._localization_manager: LocalizationManager = \
-            BrowserService.Instance.service_provider.localization_manager()
-        self._browser_profile: BrowserProfile = BrowserService.Instance.service_provider.browser_profile()
-        self._conditional_wait: ConditionalWait = BrowserService.Instance.service_provider.conditional_wait()
+            BrowserServices.Instance.service_provider.localization_manager()
+        self._browser_profile: BrowserProfile = BrowserServices.Instance.service_provider.browser_profile()
+        self._conditional_wait: ConditionalWait = BrowserServices.Instance.service_provider.conditional_wait()
 
-        timeout_configuration: TimeoutConfiguration = BrowserService.Instance.service_provider.timeout_configuration()
+        timeout_configuration: TimeoutConfiguration = BrowserServices.Instance.service_provider.timeout_configuration()
         self.set_implicit_wait_timeout(timeout_configuration.implicit)
         self.set_page_load_timeout(timeout_configuration.page_load)
         self.set_script_timeout(timeout_configuration.script)
