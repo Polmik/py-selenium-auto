@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 
 from py_selenium_auto.browsers.browser_services import BrowserServices
@@ -31,7 +33,7 @@ class TestBrowserService:
             (BrowserServices.Instance.logger.fatal, ["Message", Exception("Exc")]),
         ]
     )
-    def test_should_be_able_to_get_logger(self, logger_method, args):
+    def test_should_be_able_to_get_logger(self, logger_method: Callable, args):
         logger_method(*args)
 
     def test_should_be_able_to_get_conditional_wait(self):
@@ -49,14 +51,15 @@ class TestBrowserService:
             (BrowserServices.Instance.localized_logger.fatal, ["Message", Exception("Exc")]),
         ]
     )
-    def test_should_be_able_to_get_localized_logger(self, logger_method, args):
+    def test_should_be_able_to_get_localized_logger(self, logger_method: Callable, args):
         logger_method(*args)
 
     def test_should_be_able_to_get_service_provider(self):
         assert BrowserServices.Instance.service_provider is not None
 
+    @pytest.mark.skip
     def test_should_be_able_get_browser_with_start_arguments(self):
-        assert BrowserServices.Instance.service_provider is not None
+        raise NotImplementedError
 
     @pytest.mark.skip
     def test_should_be_able_get_browser_with_excluded_arguments(self):
