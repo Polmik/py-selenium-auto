@@ -22,7 +22,7 @@ class ChromeSettings(DriverSettings):
     def driver_options(self) -> Options:
         options = Options()
         self.__set_chrome_prefs(options)
-        # self.set_capabilities(options) # TODO Check
+        # self.set_capabilities(options) # TODO Error while setting capabilities
         self.__set_chrome_arguments(options)
         self.__set_chrome_excluded_arguments(options)
         self._set_page_load_strategy(options)

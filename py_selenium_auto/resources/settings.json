@@ -1,12 +1,12 @@
 {
-  "browser_name": "chrome",
-  "is_remote": false,
-  "remote_connection_utl": "http://localhost:4444/wd/hub",
-  "is_element_highlight_enabled": true,
-  "driver_settings": {
+  "browserName": "chrome",
+  "isRemote": false,
+  "remoteConnectionUtl": "http://localhost:4444/wd/hub",
+  "isElementHighlightEnabled": true,
+  "driverSettings": {
     "chrome": {
-      "use_webdriver_manager": true,
-      "web_driver_version": "Latest",
+      "useWebdriver_manager": true,
+      "webDriverVersion": "Latest",
       "capabilities": {
       },
       "options": {
@@ -21,12 +21,12 @@
           "password_manager_enabled": false
         }
       },
-      "logging_preferences": {
+      "loggingPreferences": {
           "Performance": "All"
       },
-      "excluded_arguments": [ "enable-automation" ],
-      "start_arguments": ["--headless"],
-      "page_load_strategy": "normal"
+      "excludedArguments": [ "enable-automation" ],
+      "startArguments": ["--headless"],
+      "pageLoadStrategy": "normal"
     }
   },
   "timeouts": {
