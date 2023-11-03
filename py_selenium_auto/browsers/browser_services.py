@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import typing
 from typing import Optional, Callable, TYPE_CHECKING
 
 from py_selenium_auto_core.applications.application import Application
@@ -10,7 +11,7 @@ from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
 
 from py_selenium_auto.browsers.browser_factory.local_browser_factory import LocalBrowserFactory
-from py_selenium_auto.browsers.browser_startup import BrowserStartup, ServiceProvider
+from py_selenium_auto.browsers.browser_startup import BrowserStartup, BrowserServiceProvider
 
 if TYPE_CHECKING:
     from py_selenium_auto.browsers.browser import Browser
@@ -25,8 +26,11 @@ class BrowserServices:
             self._browser_factory_container: Optional[BrowserFactory] = None
 
         @property
-        def service_provider(self) -> ServiceProvider:
-            return self._get_service_provider(lambda services: self.browser, self.__configure_services)
+        def service_provider(self) -> BrowserServiceProvider:
+            return self._get_service_provider(
+                lambda services: self.browser,
+                self.__configure_services
+            )
 
         @property
         def is_browser_started(self) -> bool:
@@ -53,7 +57,7 @@ class BrowserServices:
             self._set_application(value)
 
         @property
-        def _start_browser_function(self) -> Callable[[ServiceProvider], Browser]:
+        def _start_browser_function(self) -> Callable[[BrowserServiceProvider], Browser]:
             return lambda services: self.browser_factory.browser
 
         def set_startup(self, browser_startup: BrowserStartup):
@@ -83,7 +87,7 @@ class BrowserServices:
                 )
             self._browser_factory_container = app_factory
 
-        def __configure_services(self) -> ServiceProvider:
+        def __configure_services(self) -> BrowserServiceProvider:
             if not self._browser_startup_container:
                 self._browser_startup_container = BrowserStartup()
             return self._browser_startup_container.configure_services(lambda services: self.browser)

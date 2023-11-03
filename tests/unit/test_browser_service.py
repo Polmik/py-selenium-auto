@@ -1,8 +1,10 @@
 from typing import Callable
 
 import pytest
+from py_selenium_auto_core.logging.logger import Logger
 
 from py_selenium_auto.browsers.browser_services import BrowserServices
+from py_selenium_auto.browsers.browser_startup import BrowserStartup
 
 
 class TestBrowserService:
