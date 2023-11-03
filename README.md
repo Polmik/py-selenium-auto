@@ -1,7 +1,11 @@
 # Selenium for Python
 
-[![Tests](https://github.com/Polmik/py-selenium-auto/actions/workflows/tests.yml/badge.svg)](https://github.com/Polmik/py-selenium-auto/actions/workflows/tests.yml)
-[![codecov](https://codecov.io/gh/Polmik/py-selenium-auto/branch/main/graph/badge.svg)](https://codecov.io/gh/Polmik/py-selenium-auto)
+[![Latest Version](https://img.shields.io/pypi/v/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
+[![License](https://img.shields.io/pypi/l/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
+[![Supported Python implementations](https://img.shields.io/pypi/implementation/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
+[![Build Status](https://github.com/Polmik/py-selenium-auto/actions/workflows/tests.yml/badge.svg)](https://github.com/Polmik/py-selenium-auto/actions/workflows/tests.yml)
+[![Coverage Status](https://codecov.io/gh/Polmik/py-selenium-auto/branch/main/graph/badge.svg)](https://codecov.io/gh/Polmik/py-selenium-auto)
 
 ### Introduction
 
