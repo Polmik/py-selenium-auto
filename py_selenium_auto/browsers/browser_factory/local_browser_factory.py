@@ -15,11 +15,11 @@ class LocalBrowserFactory(BrowserFactory):
     __host_address_default: str = "::1"
 
     def __init__(
-            self,
-            action_retrier: ActionRetrier,
-            browser_profile: BrowserProfile,
-            timeout_configuration: TimeoutConfiguration,
-            localized_logger: LocalizedLogger
+        self,
+        action_retrier: ActionRetrier,
+        browser_profile: BrowserProfile,
+        timeout_configuration: TimeoutConfiguration,
+        localized_logger: LocalizedLogger,
     ):
         super().__init__(action_retrier, browser_profile, timeout_configuration, localized_logger)
 

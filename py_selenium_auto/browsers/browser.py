@@ -9,8 +9,12 @@ from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 from selenium.common import NoAlertPresentException
 from selenium.webdriver.remote.webdriver import WebDriver
 
-from py_selenium_auto.browsers.browser_navigation.browser_navigation import BrowserNavigation
-from py_selenium_auto.browsers.browser_navigation.browser_tab_navigation import BrowserTabNavigation
+from py_selenium_auto.browsers.browser_navigation.browser_navigation import (
+    BrowserNavigation,
+)
+from py_selenium_auto.browsers.browser_navigation.browser_tab_navigation import (
+    BrowserTabNavigation,
+)
 from py_selenium_auto.browsers.enums.alert_actions import AlertAction
 from py_selenium_auto.browsers.java_script import JavaScript
 from py_selenium_auto.configurations.browser_profile import BrowserProfile
@@ -30,8 +34,9 @@ class Browser(Application):
         self.network = None
         self.java_script_engine = None
         self._logger: LocalizedLogger = BrowserServices.Instance.service_provider.localized_logger()
-        self._localization_manager: LocalizationManager = \
+        self._localization_manager: LocalizationManager = (
             BrowserServices.Instance.service_provider.localization_manager()
+        )
         self._browser_profile: BrowserProfile = BrowserServices.Instance.service_provider.browser_profile()
         self._conditional_wait: ConditionalWait = BrowserServices.Instance.service_provider.conditional_wait()
 
@@ -204,7 +209,7 @@ class Browser(Application):
         self._conditional_wait.wait_for_true(
             function=lambda: self.execute_script(JavaScript.IsPageLoaded),
             timeout=self.__page_load_timeout,
-            message="Page loading timed out"
+            message="Page loading timed out",
         )
 
     def get_screenshot(self) -> bytes:

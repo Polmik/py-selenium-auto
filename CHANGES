@@ -1,3 +1,9 @@
+v0.4.0
+* Updated py-selenium-auto-core==0.5.0
+* Added new elements: Element, Button, Link and other
+* Added ElementFactory
+* Added JsActions
+
 v0.3.4
 * Updated py-selenium-auto-core==0.4.4
 * Updated BrowserService and ServiceProvider
