@@ -1,40 +1,62 @@
-import json
-from typing import Callable
+from pathlib import Path
+from typing import Callable, Optional
 
-from dependency_injector.providers import Singleton, Factory
-from py_selenium_auto_core.applications.startup import ServiceProvider as CoreServiceProvider, Startup
+from dependency_injector.providers import Singleton
+from py_selenium_auto_core.applications.startup import ServiceProvider, Startup
 from py_selenium_auto_core.localization.localization_manager import LocalizationManager
+from py_selenium_auto_core.logging.logger import Logger
+from py_selenium_auto_core.utilities.environment_configuration import EnvironmentConfiguration
 from py_selenium_auto_core.utilities.file_reader import FileReader
+from py_selenium_auto_core.utilities.json_settings_file import JsonSettingsFile
+from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 
-from py_selenium_auto import ROOT_PATH_PROJECT
 from py_selenium_auto.configurations.browser_profile import BrowserProfile
 from py_selenium_auto.configurations.timeout_configuration import TimeoutConfiguration
 
 
-class ServiceProvider(CoreServiceProvider):
+class BrowserServiceProvider(ServiceProvider):
 
     timeout_configuration: Singleton[TimeoutConfiguration] = Singleton(
         TimeoutConfiguration,
-        CoreServiceProvider.settings_file
+        ServiceProvider.settings_file
     )
-    browser_profile: Singleton[BrowserProfile] = Singleton(BrowserProfile, CoreServiceProvider.settings_file)
+    localization_manager: Singleton[LocalizationManager] = Singleton(
+        LocalizationManager,
+        ServiceProvider.logger_configuration,
+        ServiceProvider.logger,
+        RootPathHelper.current_root_path(str(Path(__file__))),
+    )
+
+    browser_profile: Singleton[BrowserProfile] = Singleton(BrowserProfile, ServiceProvider.settings_file)
 
 
 class BrowserStartup(Startup):
 
     @staticmethod
-    def configure_services(application_provider: Callable, settings: dict = None) -> ServiceProvider:
-        service_provider = ServiceProvider()
-        settings = settings or json.loads(FileReader.get_resource_file("settings.json", ROOT_PATH_PROJECT))
-
-        service_provider.settings_file.override(Singleton(lambda: settings))
-        service_provider.application.override(Factory(application_provider))
-        service_provider.localization_manager.override(
-            Singleton(
-                LocalizationManager,
-                service_provider.logger_configuration,
-                service_provider.logger,
-                ROOT_PATH_PROJECT
-            )
+    def configure_services(
+            application_provider: Callable,
+            settings: Optional[JsonSettingsFile] = None,
+            service_provider: BrowserServiceProvider = None,
+    ) -> BrowserServiceProvider:
+        ServiceProvider.override(BrowserServiceProvider)
+        settings = settings or BrowserStartup.get_settings()
+        service_provider = Startup.configure_services(
+            application_provider=application_provider,
+            settings=settings,
+            service_provider=BrowserServiceProvider()
         )
+
+        ServiceProvider.reset_override()
         return service_provider
+
+    @staticmethod
+    def get_settings() -> JsonSettingsFile:
+        profile_name = EnvironmentConfiguration.get_variable("profile")
+        settings_profile = "settings.json" if not profile_name else f"settings.{profile_name}.json"
+        Logger.debug(f"Get settings from: {settings_profile}")
+        if FileReader.is_resource_file_exist(settings_profile, root_path=RootPathHelper.calling_root_path()):
+            return JsonSettingsFile(setting_name=settings_profile, root_path=RootPathHelper.calling_root_path())
+        return JsonSettingsFile(
+            setting_name=settings_profile,
+            root_path=RootPathHelper.current_root_path(str(Path(__file__))),
+        )
