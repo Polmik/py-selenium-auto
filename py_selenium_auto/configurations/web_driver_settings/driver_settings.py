@@ -7,7 +7,6 @@ from py_selenium_auto import ROOT_PATH_PROJECT
 
 
 class DriverSettings(abc.ABC):
-
     def __init__(self, settings_file: dict):
         self._settings_file: dict = settings_file
         self.__options: dict = {}
@@ -46,7 +45,8 @@ class DriverSettings(abc.ABC):
                 return path
             return os.path.abspath(os.path.join(ROOT_PATH_PROJECT, path))
         raise ValueError(
-            f"Failed to find {self.download_dir_capability_key} option in settings profile for {self.browser_name}")
+            f"Failed to find {self.download_dir_capability_key} option in settings profile for {self.browser_name}"
+        )
 
     @property
     @abc.abstractmethod
@@ -61,31 +61,31 @@ class DriverSettings(abc.ABC):
     @property
     def _browser_capabilities(self) -> dict:
         if not self.__capabilities:
-            self.__capabilities = self._driver_settings.get('capabilities')
+            self.__capabilities = self._driver_settings.get("capabilities")
         return self.__capabilities
 
     @property
     def _browser_options(self) -> dict:
         if not self.__options:
-            self.__options = self._driver_settings.get('options')
+            self.__options = self._driver_settings.get("options")
         return self.__options
 
     @property
     def _logging_references(self) -> dict:
         if not self.__logging_preferences:
-            self.__logging_preferences = self._driver_settings.get('loggingPreferences')
+            self.__logging_preferences = self._driver_settings.get("loggingPreferences")
         return self.__logging_preferences
 
     @property
     def _browser_excluded_arguments(self) -> list:
         if not self.__excluded_arguments:
-            self.__excluded_arguments = self._driver_settings.get('excludedArguments')
+            self.__excluded_arguments = self._driver_settings.get("excludedArguments")
         return self.__excluded_arguments
 
     @property
     def _browser_start_arguments(self) -> list:
         if not self.__start_arguments:
-            self.__start_arguments = self._driver_settings.get('startArguments')
+            self.__start_arguments = self._driver_settings.get("startArguments")
         return self.__start_arguments
 
     @property
@@ -97,7 +97,7 @@ class DriverSettings(abc.ABC):
         return self._driver_settings.get("useWebdriverManager", True)
 
     def _set_page_load_strategy(self, options: ArgOptions):
-        options.page_load_strategy = self._driver_settings.get('pageLoadStrategy')
+        options.page_load_strategy = self._driver_settings.get("pageLoadStrategy")
 
     def _set_capabilities(self, options: ArgOptions):
         for n, v in self._browser_capabilities.items():

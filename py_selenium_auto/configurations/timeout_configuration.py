@@ -1,8 +1,9 @@
-from py_selenium_auto_core.configurations.timeout_configuration import TimeoutConfiguration as CoreTimeoutConfiguration
+from py_selenium_auto_core.configurations.timeout_configuration import (
+    TimeoutConfiguration as CoreTimeoutConfiguration,
+)
 
 
 class TimeoutConfiguration(CoreTimeoutConfiguration):
-
     def __init__(self, settings_file):
         super().__init__(settings_file)
         self.__settings_file = settings_file

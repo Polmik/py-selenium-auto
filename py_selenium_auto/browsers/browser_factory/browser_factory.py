@@ -17,11 +17,11 @@ class BrowserFactory(abc.ABC):
     """Factory that creates instance of desired Browser"""
 
     def __init__(
-            self,
-            action_retrier: ActionRetrier,
-            browser_profile: BrowserProfile,
-            timeout_configuration: TimeoutConfiguration,
-            localized_logger: LocalizedLogger
+        self,
+        action_retrier: ActionRetrier,
+        browser_profile: BrowserProfile,
+        timeout_configuration: TimeoutConfiguration,
+        localized_logger: LocalizedLogger,
     ):
         self._action_retrier = action_retrier
         self._browser_profile = browser_profile
@@ -30,16 +30,18 @@ class BrowserFactory(abc.ABC):
 
     @property
     @abc.abstractmethod
-    def _driver(self) -> WebDriver: raise NotImplementedError("Abstract method")
+    def _driver(self) -> WebDriver:
+        raise NotImplementedError("Abstract method")
 
     @property
-    def browser(self) -> 'Browser':
+    def browser(self) -> "Browser":
         """Creates instance of Browser
 
         Returns:
             Instance of desired Browser
         """
         from py_selenium_auto.browsers.browser import Browser
+
         browser = Browser(self._action_retrier.do_with_retry(lambda: self._driver, [WebDriverException]))
         self._localized_logger.info("loc.browser.ready", self._browser_profile.browser_name)
         return browser

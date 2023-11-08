@@ -3,7 +3,6 @@ from py_selenium_auto.logging.logging_parameters import LoggingParameters
 
 
 class HttpExchangeLoggingOptions:
-
     def __init__(self):
         self.request_info: LoggingParameters = LoggingParameters(enabled=True, log_level=LogLevel.Info)
         self.request_headers: LoggingParameters = LoggingParameters(enabled=True, log_level=LogLevel.Debug)
