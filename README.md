@@ -19,7 +19,7 @@
 If you have [pip](https://pip.pypa.io/en/stable/) on your system, you can simply install or upgrade the Python bindings:
 
 ```bash
-pip install -U python-selenium
+pip install -U py-selenium-auto
 ```
 
 Alternately, you can download the source distribution from [PyPI](https://pypi.org/project/py-selenium-auto/#files), unarchive it, and run:
