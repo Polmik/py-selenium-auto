@@ -65,7 +65,7 @@ class MouseActions:
     def move_to_element(self):
         """Moves mouse to the element"""
         self._log_element_action("loc.moving")
-        self._js_action.stroll_into_view()
+        self._js_action.scroll_into_view()
         self._element_action_retrier.do_with_retry(lambda: self._perform_action(self._move_to_element))
 
     def mouse_move_from_element(self):

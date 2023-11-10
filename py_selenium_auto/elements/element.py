@@ -136,7 +136,7 @@ class Element(CoreElement, abc.ABC):
         """Gets element attribute value by its name"""
         self.log_element_action("loc.el.getattr", attr)
         self.js_actions.highlight_element(highlight_state)
-        value = self.do_with_retry(lambda: self.get_element().text)
+        value = self.do_with_retry(lambda: self.get_element().get_attribute(attr))
         self.log_element_action("loc.el.attr.value", attr, value)
         return value
 

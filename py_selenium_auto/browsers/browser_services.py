@@ -93,7 +93,7 @@ class BrowserServices:
         def __configure_services(self) -> BrowserServiceProvider:
             if not self._browser_startup_container:
                 self._browser_startup_container = BrowserStartup()
-            return self._browser_startup_container.configure_services(lambda services: self.browser)
+            return self._browser_startup_container.configure_services(lambda: self.browser)
 
     Instance: _BrowserService = _BrowserService()
 

@@ -79,19 +79,19 @@ class JsActions:
         if self._browser_profile.is_element_highlight_enabled or highlight_state == HighlightState.Highlight:
             self.execute_script(JavaScript.BorderElement)
 
-    def stroll_into_view(self):
+    def scroll_into_view(self):
         """Scrolling page to the element"""
         self._log_element_action("loc.scrolling.js")
         self.execute_script(JavaScript.ScrollToElement, True)
 
-    def stroll_by(self, x: int, y: int):
+    def scroll_by(self, x: int, y: int):
         """Scrolling element by coordinates
         Element have to contains inner scroll bar
         """
         self._log_element_action("loc.scrolling.js")
         self.execute_script(JavaScript.ScrollBy, x, y)
 
-    def stroll_to_the_center(self):
+    def scroll_to_the_center(self):
         """Scrolling to the center of element
         Upper bound of element will be in the center of the page after scrolling
         """

@@ -183,7 +183,7 @@ class Browser(Application):
         try:
             self._logger.info(f"loc.browser.alert.{alert_action.name.lower()}")
             alert = self.driver.switch_to.alert
-            if not text:
+            if text:
                 self._logger.info("loc.send.text", text)
                 alert.send_keys(text)
             if alert_action == AlertAction.Accept:
