@@ -1,0 +1,2 @@
+class TestAlert:
+    pass
