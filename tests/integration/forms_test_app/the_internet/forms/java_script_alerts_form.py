@@ -11,10 +11,10 @@ class JavaScriptAlertsForm(TheInternetForm):
             Locator(By.ID, "content"),
             "JavaScriptAlerts",
         )
-        self.JsAlertButton = Button(Locator(By.XPATH, "//button[@onclick='jsAlert()']"), "JS Alert")
-        self.JsConfirmButton = Button(Locator(By.XPATH, "//button[@onclick='jsConfirm()']"), "JS Confirm")
-        self.JsPromptButton = Button(Locator(By.XPATH, "//button[@onclick='jsPrompt()']"), "JS Prompt")
-        self.ResultLabel = Button(Locator(By.ID, "result"), "Result")
+        self.js_alert_button = Button(Locator(By.XPATH, "//button[@onclick='jsAlert()']"), "JS Alert")
+        self.js_confirm_button = Button(Locator(By.XPATH, "//button[@onclick='jsConfirm()']"), "JS Confirm")
+        self.js_prompt_button = Button(Locator(By.XPATH, "//button[@onclick='jsPrompt()']"), "JS Prompt")
+        self.result_label = Button(Locator(By.ID, "result"), "Result")
 
     @property
     def _url_part(self) -> str:
