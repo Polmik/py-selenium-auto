@@ -50,7 +50,9 @@ class TestTextBox(TestUI):
         property_name = "font-family"
         expected_css_value = "Helvetica"
         assert expected_css_value in self.authentication_form.user_name_text_box.get_css_value(property_name)
-        assert expected_css_value in self.authentication_form.user_name_text_box.get_css_value(property_name, HighlightState.Highlight)
+        assert expected_css_value in self.authentication_form.user_name_text_box.get_css_value(
+            property_name, HighlightState.Highlight
+        )
 
     def test_throw_no_such_element_exception_for_not_exist_element_on_send_keys(self):
         try:

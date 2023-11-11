@@ -3,6 +3,7 @@ from typing import TypeVar, Type, TYPE_CHECKING
 from py_selenium_auto_core.elements.element_factory import (
     ElementFactory as CoreElementFactory,
 )
+
 # from py_selenium_auto_core.locator.locator import Locator
 #
 # from py_selenium_auto.elements.button import Button

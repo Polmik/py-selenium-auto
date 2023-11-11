@@ -21,7 +21,6 @@ from py_selenium_auto.elements.element_factory import ElementFactory
 
 
 class BrowserServiceProvider(ServiceProvider):
-
     __self__ = Self()
 
     timeout_configuration: Singleton[TimeoutConfiguration] = Singleton(

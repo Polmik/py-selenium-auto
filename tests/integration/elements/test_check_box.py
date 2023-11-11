@@ -3,7 +3,6 @@ from tests.integration.test_ui import TestUI
 
 
 class TestCheckBox(TestUI):
-
     check_box_form = CheckBoxesForm()
 
     def setup_method(self):

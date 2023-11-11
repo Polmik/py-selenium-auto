@@ -50,5 +50,3 @@ class TestComboBox(TestUI):
     def test_possible_to_selected_value_via_js(self):
         self.dropdown_form.dropdown.js_actions.select_value_by_text(self.option)
         assert self.option == self.dropdown_form.dropdown.selected_text
-
-

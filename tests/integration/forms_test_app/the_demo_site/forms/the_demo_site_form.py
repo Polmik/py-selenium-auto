@@ -1,10 +1,7 @@
 import abc
 
 from py_selenium_auto_core.locator.locator import Locator
-from selenium.webdriver.common.by import By
-
 from py_selenium_auto.browsers.browser_services import BrowserServices
-from py_selenium_auto.elements.link import Link
 from py_selenium_auto.forms.form import Form
 
 

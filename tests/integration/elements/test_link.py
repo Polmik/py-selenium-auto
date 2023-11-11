@@ -25,4 +25,3 @@ class TestLink(TestUI):
         BrowserServices.Instance.browser.go_to(self.redirector_form.redirect_link.href)
         _wait_for_redirect()
         assert StatusCodesForm().url.lower() == BrowserServices.Instance.browser.current_url.lower()
-

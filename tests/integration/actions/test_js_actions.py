@@ -121,7 +121,6 @@ class TestJsActions(TestUI):
         form = WelcomeForm()
         form.open()
         form.get_example_link(AvailableExample.Hovers).js_actions.scroll_to_the_center()
-
         windows_size = BrowserServices.Instance.browser.execute_script_from_file()
 
     def test_possible_to_scroll_to_the_center_check_ui(self):

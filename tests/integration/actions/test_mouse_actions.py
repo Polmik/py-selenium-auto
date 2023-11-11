@@ -9,7 +9,6 @@ from tests.integration.test_ui import TestUI
 
 
 class TestMouseActions(TestUI):
-
     def test_possible_to_click(self):
         form = WelcomeForm()
         form.open()
