@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Callable, Optional
 
-from dependency_injector.providers import Singleton, Factory
+from dependency_injector.providers import Singleton, Factory, Self
 from py_selenium_auto_core.applications.startup import ServiceProvider, Startup
 from py_selenium_auto_core.localization.localization_manager import LocalizationManager
 from py_selenium_auto_core.logging.logger import Logger
@@ -11,13 +11,18 @@ from py_selenium_auto_core.utilities.environment_configuration import (
 from py_selenium_auto_core.utilities.file_reader import FileReader
 from py_selenium_auto_core.utilities.json_settings_file import JsonSettingsFile
 from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
+from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
 from py_selenium_auto.configurations.browser_profile import BrowserProfile
 from py_selenium_auto.configurations.timeout_configuration import TimeoutConfiguration
+
+
 from py_selenium_auto.elements.element_factory import ElementFactory
 
 
 class BrowserServiceProvider(ServiceProvider):
+    __self__ = Self()
+
     timeout_configuration: Singleton[TimeoutConfiguration] = Singleton(
         TimeoutConfiguration,
         ServiceProvider.settings_file,
@@ -41,6 +46,8 @@ class BrowserServiceProvider(ServiceProvider):
         localization_manager,
     )
 
+    conditional_wait: Factory[ConditionalWait] = Factory(ConditionalWait, timeout_configuration, __self__)
+
 
 class BrowserStartup(Startup):
     @staticmethod
@@ -49,13 +56,15 @@ class BrowserStartup(Startup):
         settings: Optional[JsonSettingsFile] = None,
         service_provider: BrowserServiceProvider = None,
     ) -> BrowserServiceProvider:
+        Logger.info("Overr")
         ServiceProvider.override(BrowserServiceProvider)
         settings = settings or BrowserStartup.get_settings()
-        service_provider = Startup.configure_services(
+        service_provider: BrowserServiceProvider = Startup.configure_services(
             application_provider=application_provider,
             settings=settings,
             service_provider=BrowserServiceProvider(),
         )
+        service_provider.application.override(Factory(application_provider))
 
         ServiceProvider.reset_override()
         return service_provider

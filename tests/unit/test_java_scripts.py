@@ -5,11 +5,7 @@ from collections import defaultdict
 
 
 class TestJavaScripts:
-
-    @pytest.mark.parametrize(
-        "js_script",
-        [js for js in JavaScript]
-    )
+    @pytest.mark.parametrize("js_script", [js for js in JavaScript])
     def test_should_get_java_script(self, js_script):
         assert len(js_script.script_from_file) > 0, f"Failed to get javascript {js_script}"
 

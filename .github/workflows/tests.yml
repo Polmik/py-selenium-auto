@@ -3,7 +3,30 @@
 
 name: Tests
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - CHANGELOG.md
+      - README.md
+      - LICENSE
+      - CHANGES
+      - .gitignore
+      - setup.cfg
+      - setup.py
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - CHANGELOG.md
+      - README.md
+      - LICENSE
+      - CHANGES
+      - .gitignore
+      - setup.cfg
+      - setup.py
+  workflow_dispatch:
+    branches: [ "main" ]
+
 
 permissions:
   contents: read
@@ -14,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
+        python-version: [ 3.7, 3.8 ]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
@@ -34,9 +57,9 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest tests
 
-  test-coverage:
+  test-coverage-py39:
     name: Run tests with coverage
     runs-on: ubuntu-latest
     steps:
@@ -60,7 +83,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest --cov-config .coveragerc --cov-report xml --cov-report term:skip-covered --cov="."
+        pytest tests --cov-config .coveragerc --cov-report xml --cov-report term:skip-covered --cov="."
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       env:

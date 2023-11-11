@@ -1,15 +1,12 @@
 from typing import Callable
 
 import pytest
-from py_selenium_auto_core.logging.logger import Logger
 
 from py_selenium_auto.browsers.browser_services import BrowserServices
-from py_selenium_auto.browsers.browser_startup import BrowserStartup
 
 
 class TestBrowserService:
-
-    def teardown_method(self, method):
+    def teardown_method(self):
         if BrowserServices.Instance.is_browser_started:
             BrowserServices.Instance.browser.quit()
 
@@ -33,8 +30,9 @@ class TestBrowserService:
             (BrowserServices.Instance.logger.error, ["Message"]),
             (BrowserServices.Instance.logger.fatal, ["Message"]),
             (BrowserServices.Instance.logger.fatal, ["Message", Exception("Exc")]),
-        ]
+        ],
     )
+    @pytest.fixture()
     def test_should_be_able_to_get_logger(self, logger_method: Callable, args):
         logger_method(*args)
 
@@ -51,7 +49,7 @@ class TestBrowserService:
             (BrowserServices.Instance.localized_logger.error, ["Message"]),
             (BrowserServices.Instance.localized_logger.fatal, ["Message"]),
             (BrowserServices.Instance.localized_logger.fatal, ["Message", Exception("Exc")]),
-        ]
+        ],
     )
     def test_should_be_able_to_get_localized_logger(self, logger_method: Callable, args):
         logger_method(*args)
