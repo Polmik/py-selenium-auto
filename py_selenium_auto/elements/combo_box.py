@@ -80,7 +80,7 @@ class ComboBox(Element):
                 element_value = element.get_attribute("value")
                 if value.lower() in element_value.lower():
                     select.select_by_value(element_value)
-                return
+                    return
             raise InvalidElementStateException(f"Failed to select option that contains text {value}")
 
         self.log_element_action("loc.selecting.value", value)
