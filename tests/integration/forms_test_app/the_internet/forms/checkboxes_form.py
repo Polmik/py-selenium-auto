@@ -5,7 +5,7 @@ from py_selenium_auto.elements.check_box import CheckBox
 from tests.integration.forms_test_app.the_internet.forms.the_internet_from import TheInternetForm
 
 
-class CheckboxesForm(TheInternetForm):
+class CheckBoxesForm(TheInternetForm):
     def __init__(self):
         super().__init__(
             Locator(By.ID, "checkboxes"),
