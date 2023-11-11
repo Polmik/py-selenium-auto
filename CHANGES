@@ -1,3 +1,10 @@
+v0.4.1
+* Updated py-selenium-auto-core==0.5.1
+* Added pytest-xdist==3.3.1 to run the tests in parallel
+* Fixed incorrect logic for some objects
+* Added CoreForm and Form implementations
+* Added tests for checking Forms, JsActions and Elements
+
 v0.4.0
 * Updated py-selenium-auto-core==0.5.0
 * Added new elements: Element, Button, Link and other
