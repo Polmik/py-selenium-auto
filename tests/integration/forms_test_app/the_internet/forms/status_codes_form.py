@@ -7,10 +7,10 @@ from tests.integration.forms_test_app.the_internet.forms.the_internet_from impor
 class StatusCodesForm(TheInternetForm):
     def __init__(self):
         super().__init__(
-            Locator(By.ID, "content"),
-            "StatusCodes",
+            Locator(By.ID, 'content'),
+            'StatusCodes',
         )
 
     @property
     def _url_part(self) -> str:
-        return "status_codes"
+        return 'status_codes'

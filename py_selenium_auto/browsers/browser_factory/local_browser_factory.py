@@ -10,9 +10,9 @@ from py_selenium_auto.configurations.timeout_configuration import TimeoutConfigu
 
 
 class LocalBrowserFactory(BrowserFactory):
-    """Factory that creates instance of local Browser"""
+    """Factory that creates instance of local Browser."""
 
-    __host_address_default: str = "::1"
+    __host_address_default: str = '::1'
 
     def __init__(
         self,
@@ -29,10 +29,10 @@ class LocalBrowserFactory(BrowserFactory):
         driver_settings = self._browser_profile.driver_settings
         driver_service = driver_settings.driver_service
         driver: WebDriver
-        if browser_name.lower() == "chrome":
+        if browser_name.lower() == 'chrome':
             if driver_settings._use_webdriver_manager:
                 driver_version = driver_settings.web_driver_version
-                driver_version = None if driver_version.upper() == "LATEST" else driver_version
+                driver_version = None if driver_version.upper() == 'LATEST' else driver_version
                 driver_manager = ChromeDriverManager(driver_version=driver_version)
                 driver_path = driver_manager.install()
                 driver_service.path = driver_path
@@ -41,5 +41,5 @@ class LocalBrowserFactory(BrowserFactory):
                 service=driver_service,
             )
         else:
-            raise NotImplementedError(f"Browser [{browser_name}] is not supported.")
+            raise NotImplementedError(f'Browser [{browser_name}] is not supported.')
         return self._web_driver

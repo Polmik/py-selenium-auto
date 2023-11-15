@@ -9,10 +9,10 @@ class ContextMenuForm(TheInternetForm):
     def __init__(self):
         super().__init__(
             Locator(By.XPATH, "//h3[contains(.,'Context Menu')]"),
-            "ContextMenu",
+            'ContextMenu',
         )
-        self.hot_spot_label = Label(Locator(By.ID, "hot-spot"), "Hot spot")
+        self.hot_spot_label = Label(Locator(By.ID, 'hot-spot'), 'Hot spot')
 
     @property
     def _url_part(self) -> str:
-        return "context_menu"
+        return 'context_menu'

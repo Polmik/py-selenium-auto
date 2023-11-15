@@ -1,3 +1,10 @@
+v0.4.2
+* Updated py-selenium-auto-core==0.5.2
+* Added method to get xpath for non-supported elements using JS via ElementFactory
+* Added methods to create elements via ElementFactory
+* Fixed imports
+* Added tests for checking Forms, Elements, ElementStateProvider, ElementFactory
+
 v0.4.1
 * Updated py-selenium-auto-core==0.5.1
 * Added pytest-xdist==3.3.1 to run the tests in parallel

@@ -10,17 +10,17 @@ class FileDownloaderForm(TheInternetForm):
 
     def __init__(self):
         super().__init__(
-            Locator(By.ID, "content"),
-            "FileDownloader",
+            Locator(By.ID, 'content'),
+            'FileDownloader',
         )
 
     @property
     def file_name(self) -> str:
-        return "some-file.txt"
+        return 'some-file.txt'
 
     @property
     def _url_part(self) -> str:
-        return "download"
+        return 'download'
 
     def get_download_link(self, file_name: str):
-        return Link(Locator(By.XPATH, self.__link_template.format(file_name)), f"Download file {file_name}")
+        return Link(Locator(By.XPATH, self.__link_template.format(file_name)), f'Download file {file_name}')

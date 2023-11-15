@@ -1,0 +1,51 @@
+{
+  "browserName": "chrome",
+  "isRemote": false,
+  "remoteConnectionUtl": "http://localhost:4444/wd/hub",
+  "isElementHighlightEnabled": true,
+  "driverSettings": {
+    "chrome": {
+      "useWebdriver_manager": true,
+      "webDriverVersion": "Latest",
+      "capabilities": {
+      },
+      "options": {
+        "intl.accept_languages": "en",
+        "safebrowsing.enabled": "true",
+        "profile.default_content_settings.popups": "0",
+        "disable-popup-blocking": "true",
+        "download.prompt_for_download": "false",
+        "download.default_directory": ".\\downloads",
+        "credentials_enable_service": false,
+        "profile": {
+          "password_manager_enabled": false
+        }
+      },
+      "loggingPreferences": {
+          "Performance": "All"
+      },
+      "excludedArguments": [ "enable-automation" ],
+      "startArguments": ["--headless"],
+      "pageLoadStrategy": "normal"
+    }
+  },
+  "timeouts": {
+    "timeoutImplicit": 0,
+    "timeoutCondition": 30,
+    "timeoutPollingInterval": 0.3,
+    "timeoutCommand": 60,
+    "timeoutScript": 15,
+    "timeoutPageLoad": 15
+  },
+  "retry": {
+    "number": 2,
+    "pollingInterval": 0.3
+  },
+  "logger": {
+    "language": "en",
+    "logPageSource": true
+  },
+  "elementCache": {
+    "isEnabled": false
+  }
+}

@@ -60,7 +60,7 @@ jobs:
         pytest tests
 
   test-coverage-py39:
-    name: Run tests with coverage
+    name: Run tests (3.9) with coverage
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

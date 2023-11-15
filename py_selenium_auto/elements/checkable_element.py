@@ -11,10 +11,10 @@ class CheckableElement(Element, abc.ABC):
         super().__init__(locator, name, element_state)
 
     def is_checked(self) -> bool:
-        """Gets CheckBox state: True if checked and false otherwise"""
-        self.log_element_action("loc.checkable.get.state")
+        """Gets CheckBox state: True if checked and false otherwise."""
+        self.log_element_action('loc.checkable.get.state')
         state = self._get_state()
-        self.log_element_action("loc.checkable.state", state)
+        self.log_element_action('loc.checkable.state', state)
         return state
 
     def _get_state(self) -> bool:

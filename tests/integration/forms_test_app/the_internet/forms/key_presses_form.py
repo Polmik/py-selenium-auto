@@ -9,10 +9,10 @@ class KeyPressesForm(TheInternetForm):
     def __init__(self):
         super().__init__(
             Locator(By.XPATH, "//h3[contains(.,'Key Presses')]"),
-            "KeyPresses",
+            'KeyPresses',
         )
-        self.input_text_box = TextBox(Locator(By.ID, "target"), "Input")
+        self.input_text_box = TextBox(Locator(By.ID, 'target'), 'Input')
 
     @property
     def _url_part(self) -> str:
-        return "key_presses"
+        return 'key_presses'

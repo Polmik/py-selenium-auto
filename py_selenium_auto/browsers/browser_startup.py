@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Callable, Optional
 
-from dependency_injector.providers import Singleton, Factory, Self
+from dependency_injector.providers import Factory, Self, Singleton
 from py_selenium_auto_core.applications.startup import ServiceProvider, Startup
 from py_selenium_auto_core.localization.localization_manager import LocalizationManager
 from py_selenium_auto_core.logging.logger import Logger
@@ -15,8 +15,6 @@ from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
 from py_selenium_auto.configurations.browser_profile import BrowserProfile
 from py_selenium_auto.configurations.timeout_configuration import TimeoutConfiguration
-
-
 from py_selenium_auto.elements.element_factory import ElementFactory
 
 
@@ -50,16 +48,16 @@ class BrowserServiceProvider(ServiceProvider):
 
 
 class BrowserStartup(Startup):
-    @staticmethod
+    @classmethod
     def configure_services(
+        cls,
         application_provider: Callable,
         settings: Optional[JsonSettingsFile] = None,
         service_provider: BrowserServiceProvider = None,
     ) -> BrowserServiceProvider:
-        Logger.info("Overr")
         ServiceProvider.override(BrowserServiceProvider)
-        settings = settings or BrowserStartup.get_settings()
-        service_provider: BrowserServiceProvider = Startup.configure_services(
+        settings = settings or cls.get_settings()
+        service_provider: BrowserServiceProvider = super().configure_services(
             application_provider=application_provider,
             settings=settings,
             service_provider=BrowserServiceProvider(),
@@ -69,11 +67,11 @@ class BrowserStartup(Startup):
         ServiceProvider.reset_override()
         return service_provider
 
-    @staticmethod
-    def get_settings() -> JsonSettingsFile:
-        profile_name = EnvironmentConfiguration.get_variable("profile")
-        settings_profile = "settings.json" if not profile_name else f"settings.{profile_name}.json"
-        Logger.debug(f"Get settings from: {settings_profile}")
+    @classmethod
+    def get_settings(cls) -> JsonSettingsFile:
+        profile_name = EnvironmentConfiguration.get_variable('profile')
+        settings_profile = 'settings.json' if not profile_name else f'settings.{profile_name}.json'
+        Logger.debug(f'Get settings from: {settings_profile}')
         if FileReader.is_resource_file_exist(settings_profile, root_path=RootPathHelper.calling_root_path()):
             return JsonSettingsFile(
                 setting_name=settings_profile,

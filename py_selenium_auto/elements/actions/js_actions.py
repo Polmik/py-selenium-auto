@@ -1,4 +1,4 @@
-from typing import Type, TYPE_CHECKING
+from typing import TYPE_CHECKING, Type
 
 from py_selenium_auto_core.elements.constants.element_state import ElementState
 from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
@@ -15,11 +15,11 @@ if TYPE_CHECKING:
 
 
 class JsActions:
-    """Allows to perform actions on elements via JavaScript"""
+    """Allows to perform actions on elements via JavaScript."""
 
     def __init__(
         self,
-        element: "Element",
+        element: 'Element',
         element_type: str,
         logger: LocalizedLogger,
         browser_profile: BrowserProfile,
@@ -38,109 +38,112 @@ class JsActions:
         return BrowserServices.Instance.service_provider.action_retrier()
 
     def expand_shadow_root(self) -> ShadowRoot:
-        """Expands shadow root"""
-        self._log_element_action("loc.shadowroot.expand.js")
+        """Expands shadow root."""
+        self._log_element_action('loc.shadowroot.expand.js')
         return self.execute_script(JavaScript.ExpandShadowRoot)
 
     def find_element_in_shadow_root(
         self,
-        element_type: Type["Element"],
+        element_type: Type['Element'],
         locator: Locator,
         name: str,
         state: ElementState = ElementState.Displayed,
     ):
-        """Finds element in the shadow root of the current element
+        """Finds element in the shadow root of the current element.
 
-        Args:
+        :arg:
             element_type: Type of the target element
             locator: Locator of the target element
                 Note that some browsers don't support XPath locator for shadow elements (e.g. Chrome)
             name: Name of the target element
             state: State of the target element
 
-        Returns:
-            Instance of element
+        ::returns:
+            Instance of element.
+
         """
         raise NotImplementedError
 
     def click_and_wait(self):
-        """Performs click on element and waits for page is loaded"""
+        """Performs click on element and waits for page is loaded."""
         self.click()
         self._browser.wait_for_page_to_load()
 
     def click(self):
-        """Performs click on element"""
-        self._log_element_action("loc.clicking.js")
+        """Performs click on element."""
+        self._log_element_action('loc.clicking.js')
         self.highlight_element()
         self.execute_script(JavaScript.ClickElement)
 
     def highlight_element(self, highlight_state: HighlightState = HighlightState.Default):
-        """Highlights the element"""
+        """Highlights the element."""
         if self._browser_profile.is_element_highlight_enabled or highlight_state == HighlightState.Highlight:
             self.execute_script(JavaScript.BorderElement)
 
     def scroll_into_view(self):
-        """Scrolling page to the element"""
-        self._log_element_action("loc.scrolling.js")
+        """Scrolling page to the element."""
+        self._log_element_action('loc.scrolling.js')
         self.execute_script(JavaScript.ScrollToElement, True)
 
     def scroll_by(self, x: int, y: int):
-        """Scrolling element by coordinates
+        """Scrolling element by coordinates.
+
         Element have to contains inner scroll bar
         """
-        self._log_element_action("loc.scrolling.js")
+        self._log_element_action('loc.scrolling.js')
         self.execute_script(JavaScript.ScrollBy, x, y)
 
     def scroll_to_the_center(self):
-        """Scrolling to the center of element
+        """Scrolling to the center of element.
+
         Upper bound of element will be in the center of the page after scrolling
         """
-        self._log_element_action("loc.scrolling.center.js")
+        self._log_element_action('loc.scrolling.center.js')
         self.execute_script(JavaScript.ScrollToElementCenter)
 
     def set_value(self, value: str):
-        """Setting value"""
-        self._log_element_action("loc.setting.value", value)
+        """Setting value."""
+        self._log_element_action('loc.setting.value', value)
         self.execute_script(JavaScript.SetValue, value)
 
     def set_focus(self):
-        """Setting focus"""
-        self._log_element_action("loc.focusing")
+        """Setting focus."""
+        self._log_element_action('loc.focusing')
         self.execute_script(JavaScript.SetFocus)
 
     def set_attribute(self, name: str, value: str):
-        """Setting attribute value"""
-        self._log_element_action("loc.el.attr.set", name, value)
+        """Setting attribute value."""
+        self._log_element_action('loc.el.attr.set', name, value)
         self.execute_script(JavaScript.SetAttribute, name, value)
 
     def is_element_on_screen(self):
-        """Checks whether element on screen or not"""
-        self._log_element_action("loc.is.present.js")
+        """Checks whether element on screen or not."""
+        self._log_element_action('loc.is.present.js')
         value = self.execute_script(JavaScript.ElementIsOnScreen)
-        self._log_element_action("loc.is.present.value", value)
+        self._log_element_action('loc.is.present.value', value)
         return value
 
     def get_element_text(self):
-        """Get text from element"""
-        self._log_element_action("loc.get.text.js")
+        """Get text from element."""
+        self._log_element_action('loc.get.text.js')
         value = self.execute_script(JavaScript.GetElementText)
-        self._log_element_action("loc.text.value", value)
+        self._log_element_action('loc.text.value', value)
         return value
 
     def hover_mouse(self):
-        """Hover mouse over element"""
-        self._log_element_action("loc.hover.js")
+        """Hover mouse over element."""
+        self._log_element_action('loc.hover.js')
         self.execute_script(JavaScript.MouseHover)
 
     def get_xpath(self):
-        """Get element's XPath"""
-        self._log_element_action("loc.get.xpath.js")
+        """Get element's XPath."""
+        self._log_element_action('loc.get.xpath.js')
         value = self.execute_script(JavaScript.GetElementXPath)
-        self._log_element_action("loc.xpath.value", value)
+        self._log_element_action('loc.xpath.value', value)
         return value
 
     def get_view_port_coordinates(self):
-        """Gets element coordinates relative to the View Port"""
+        """Gets element coordinates relative to the View Port."""
         raise NotImplementedError
 
     def execute_script(self, script, *args):

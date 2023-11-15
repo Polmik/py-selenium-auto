@@ -20,4 +20,4 @@ class ElementStateProvider(CoreElementStateProvider):
         super().__init__(locator, conditional_wait, element_finder, log_element_state)
 
     def __is_element_enabled(self, element: WebElement) -> bool:
-        return element.is_enabled() and "disable" not in element.get_attribute("class")
+        return element.is_enabled() and 'disable' not in element.get_attribute('class')

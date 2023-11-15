@@ -8,15 +8,15 @@ from tests.integration.forms_test_app.the_internet.forms.the_internet_from impor
 class JQueryMenuForm(TheInternetForm):
     def __init__(self):
         super().__init__(
-            Locator(By.ID, "menu"),
-            "JQueryMenu",
+            Locator(By.ID, 'menu'),
+            'JQueryMenu',
         )
-        self.enabled_button = Button(Locator(By.XPATH, "//*[@id='ui-id-2' or @id='ui-id-3']"), "Enabled")
+        self.enabled_button = Button(Locator(By.XPATH, "//*[@id='ui-id-2' or @id='ui-id-3']"), 'Enabled')
 
     @property
     def _url_part(self) -> str:
-        return "jqueryui/menu"
+        return 'jqueryui/menu'
 
     @property
     def is_enabled_button_focused(self) -> bool:
-        return "focus" in self.enabled_button.get_attribute("class")
+        return 'focus' in self.enabled_button.get_attribute('class')

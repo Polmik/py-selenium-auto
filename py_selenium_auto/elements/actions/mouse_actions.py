@@ -1,4 +1,4 @@
-from typing import Callable, TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable
 
 from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
 from py_selenium_auto_core.utilities.action_retrier import ActionRetrier
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class MouseActions:
     def __init__(
         self,
-        element: "Element",
+        element: 'Element',
         element_type: str,
         logger: LocalizedLogger,
         element_action_retrier: ActionRetrier,
@@ -35,51 +35,51 @@ class MouseActions:
         )
 
     def click(self):
-        """Performs click on element"""
+        """Performs click on element."""
 
         def predicate(element: WebElement):
             return self._move_to_element(element).click(element)
 
-        self._log_element_action("loc.clicking")
+        self._log_element_action('loc.clicking')
         self._js_action.highlight_element()
         self._element_action_retrier.do_with_retry(lambda: self._perform_action(predicate))
 
     def double_click(self):
-        """Performs double click on element"""
+        """Performs double click on element."""
 
         def predicate(element: WebElement):
             return self._move_to_element(element).double_click(element)
 
-        self._log_element_action("loc.clicking.double")
+        self._log_element_action('loc.clicking.double')
         self._element_action_retrier.do_with_retry(lambda: self._perform_action(predicate))
 
     def right_click(self):
-        """Performs right click on element"""
+        """Performs right click on element."""
 
         def predicate(element: WebElement):
             return self._move_to_element(element).context_click(element)
 
-        self._log_element_action("loc.clicking.right")
+        self._log_element_action('loc.clicking.right')
         self._element_action_retrier.do_with_retry(lambda: self._perform_action(predicate))
 
     def move_to_element(self):
-        """Moves mouse to the element"""
-        self._log_element_action("loc.moving")
+        """Moves mouse to the element."""
+        self._log_element_action('loc.moving')
         self._js_action.scroll_into_view()
         self._element_action_retrier.do_with_retry(lambda: self._perform_action(self._move_to_element))
 
     def mouse_move_from_element(self):
-        """Moves mouse from this element"""
+        """Moves mouse from this element."""
 
         def predicate(element: WebElement):
             size = element.size
             return ActionChains(BrowserServices.Instance.browser.driver).move_to_element_with_offset(
                 element,
-                -size["width"] / 2,
-                -size["height"] / 2,
+                -size['width'] / 2,
+                -size['height'] / 2,
             )
 
-        self._log_element_action("Moving mouse from element")
+        self._log_element_action('Moving mouse from element')
         self._element_action_retrier.do_with_retry(lambda: self._perform_action(predicate))
 
     @staticmethod
