@@ -54,7 +54,6 @@ class BrowserStartup(Startup):
         settings: Optional[JsonSettingsFile] = None,
         service_provider: BrowserServiceProvider = None,
     ) -> BrowserServiceProvider:
-        Logger.info("Overr")
         ServiceProvider.override(BrowserServiceProvider)
         settings = settings or BrowserStartup.get_settings()
         service_provider: BrowserServiceProvider = Startup.configure_services(
