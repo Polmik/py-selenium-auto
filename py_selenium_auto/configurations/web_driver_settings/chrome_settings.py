@@ -13,11 +13,11 @@ class ChromeSettings(DriverSettings):
 
     @property
     def browser_name(self) -> str:
-        return "chrome"
+        return 'chrome'
 
     @property
     def download_dir_capability_key(self) -> str:
-        return "download.default_directory"
+        return 'download.default_directory'
 
     @property
     def driver_options(self) -> Options:
@@ -39,11 +39,11 @@ class ChromeSettings(DriverSettings):
 
     def __set_chrome_prefs(self, options: Options):
         self._browser_options[self.download_dir_capability_key] = self.download_dir
-        options.add_experimental_option("prefs", self._browser_options)
+        options.add_experimental_option('prefs', self._browser_options)
 
     def __set_chrome_arguments(self, options):
         for arg in self._browser_start_arguments:
             options.add_argument(arg)
 
     def __set_chrome_excluded_arguments(self, options):
-        options.add_experimental_option("excludeSwitches", self._browser_excluded_arguments)
+        options.add_experimental_option('excludeSwitches', self._browser_excluded_arguments)

@@ -1,7 +1,3 @@
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-
-[[tool.mypy.overrides]]
-module = "py_selenium_auto_core.*"
-ignore_missing_imports = true

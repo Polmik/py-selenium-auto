@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     )
     from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
-# T = TypeVar("T", bound=Element, covariant=True)
+# T = TypeVar('T', bound=Element, covariant=True)
 
 
 class ElementFactory(CoreElementFactory):

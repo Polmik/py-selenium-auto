@@ -31,7 +31,7 @@ from py_selenium_auto.elements.highlight_state import HighlightState
 
 
 class Element(CoreElement, abc.ABC):
-    """Defines base class for any UI element"""
+    """Defines base class for any UI element."""
 
     @property
     def visual(self):
@@ -59,12 +59,12 @@ class Element(CoreElement, abc.ABC):
 
     @property
     def js_actions(self) -> JsActions:
-        """Gets JavaScript actions that can be performed with an element"""
+        """Gets JavaScript actions that can be performed with an element."""
         return JsActions(self, self.element_type, self.localized_logger, self.browser_profile)
 
     @property
     def mouse_actions(self) -> MouseActions:
-        """Gets Mouse actions that can be performed with an element"""
+        """Gets Mouse actions that can be performed with an element."""
         return MouseActions(self, self.element_type, self.localized_logger, self.action_retrier)
 
     @property
@@ -112,82 +112,82 @@ class Element(CoreElement, abc.ABC):
         return BrowserServices.Instance.service_provider.conditional_wait()
 
     def click_and_wait(self):
-        """Clicks the element and waits for page to load"""
+        """Clicks the element and waits for page to load."""
         self.click()
         self._browser.wait_for_page_to_load()
 
     def wait_and_click(self):
-        """Waits for page to load and click the element"""
+        """Waits for page to load and click the element."""
         self.state.wait_for_clickable()
         self.click()
 
     def click(self):
-        """Clicks the element"""
-        self.log_element_action("loc.clicking")
+        """Clicks the element."""
+        self.log_element_action('loc.clicking')
         self.js_actions.highlight_element()
         self.do_with_retry(lambda: self.get_element().click())
 
     def focus(self):
-        """Set focus on element"""
-        self.log_element_action("loc.focusing")
+        """Set focus on element."""
+        self.log_element_action('loc.focusing')
         self.js_actions.set_focus()
 
     def get_attribute(self, attr: str, highlight_state: HighlightState = HighlightState.Default) -> str:
-        """Gets element attribute value by its name"""
-        self.log_element_action("loc.el.getattr", attr)
+        """Gets element attribute value by its name."""
+        self.log_element_action('loc.el.getattr', attr)
         self.js_actions.highlight_element(highlight_state)
         value = self.do_with_retry(lambda: self.get_element().get_attribute(attr))
-        self.log_element_action("loc.el.attr.value", attr, value)
+        self.log_element_action('loc.el.attr.value', attr, value)
         return value
 
     def get_css_value(self, property_name: str, highlight_state: HighlightState = HighlightState.Default) -> str:
-        """Gets css value of the element"""
-        self.log_element_action("loc.el.cssvalue", property_name)
+        """Gets css value of the element."""
+        self.log_element_action('loc.el.cssvalue', property_name)
         self.js_actions.highlight_element(highlight_state)
         value = self.do_with_retry(lambda: self.get_element().value_of_css_property(property_name))
-        self.log_element_action("loc.el.attr.value", property_name, value)
+        self.log_element_action('loc.el.attr.value', property_name, value)
         return value
 
     def get_text(self, highlight_state: HighlightState = HighlightState.Default) -> str:
-        """Gets element text"""
-        self.log_element_action("loc.get.text")
+        """Gets element text."""
+        self.log_element_action('loc.get.text')
         self.js_actions.highlight_element(highlight_state)
         value = self.do_with_retry(lambda: self.get_element().text)
-        self.log_element_action("loc.text.value", value)
+        self.log_element_action('loc.text.value', value)
         return value
 
     def send_inner_html(self, value: str):
-        """Sets element inner HTML"""
+        """Sets element inner HTML."""
         self.click()
-        self.log_element_action(f"Setting text - {value}")
+        self.log_element_action(f'Setting text - {value}')
         self._browser.execute_script(JavaScript.SetInnerHTML, self.get_element(), value)
 
     def send_key(self):
-        """Send key"""
+        """Send key."""
 
     def expand_shadow_root(self) -> ShadowRoot:
-        """Expands shadow roo"""
-        self.log_element_action("loc.shadowroot.expand")
+        """Expands shadow roo."""
+        self.log_element_action('loc.shadowroot.expand')
         shadow_root = self.get_element().shadow_root
         return shadow_root
 
     def find_element_in_shadow_root(
         self,
-        element_type: typing.Type["Element"],
+        element_type: typing.Type['Element'],
         locator: Locator,
         name: str,
         state: ElementState = ElementState.Displayed,
     ):
-        """Finds element in the shadow root of the current element
+        """Finds element in the shadow root of the current element.
 
-        Args:
+        :arg:
             element_type: Type of the target element
             locator: Locator of the target element
                 Note that some browsers don't support XPath locator for shadow elements (e.g. Chrome)
             name: Name of the target element
             state: State of the target element
 
-        Returns:
+        ::returns:
             Instance of element
         """
         raise NotImplementedError

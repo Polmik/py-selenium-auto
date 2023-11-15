@@ -68,9 +68,9 @@ class BrowserStartup(Startup):
 
     @staticmethod
     def get_settings() -> JsonSettingsFile:
-        profile_name = EnvironmentConfiguration.get_variable("profile")
-        settings_profile = "settings.json" if not profile_name else f"settings.{profile_name}.json"
-        Logger.debug(f"Get settings from: {settings_profile}")
+        profile_name = EnvironmentConfiguration.get_variable('profile')
+        settings_profile = 'settings.json' if not profile_name else f'settings.{profile_name}.json'
+        Logger.debug(f'Get settings from: {settings_profile}')
         if FileReader.is_resource_file_exist(settings_profile, root_path=RootPathHelper.calling_root_path()):
             return JsonSettingsFile(
                 setting_name=settings_profile,

@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 class BrowserFactory(abc.ABC):
-    """Factory that creates instance of desired Browser"""
+    """Factory that creates instance of desired Browser."""
 
     def __init__(
         self,
@@ -31,17 +31,17 @@ class BrowserFactory(abc.ABC):
     @property
     @abc.abstractmethod
     def _driver(self) -> WebDriver:
-        raise NotImplementedError("Abstract method")
+        raise NotImplementedError('Abstract method')
 
     @property
-    def browser(self) -> "Browser":
-        """Creates instance of Browser
+    def browser(self) -> 'Browser':
+        """Creates instance of Browser.
 
-        Returns:
+        :returns:
             Instance of desired Browser
         """
         from py_selenium_auto.browsers.browser import Browser
 
         browser = Browser(self._action_retrier.do_with_retry(lambda: self._driver, [WebDriverException]))
-        self._localized_logger.info("loc.browser.ready", self._browser_profile.browser_name)
+        self._localized_logger.info('loc.browser.ready', self._browser_profile.browser_name)
         return browser

@@ -6,7 +6,7 @@ from py_selenium_auto.forms.form import Form
 
 
 class TheDemoSiteForm(Form):
-    _base_url: str = "http://eprint.com.hr/demo/index.php"
+    _base_url: str = 'http://eprint.com.hr/demo/index.php'
 
     def __init__(self, locator: Locator, name: str):
         super().__init__(locator, name)

@@ -1,5 +1,7 @@
 from typing import Callable
 
+import pytest
+
 from py_selenium_auto.browsers.browser_services import BrowserServices
 from tests.integration.forms_test_app.the_internet.forms.welcome_form import WelcomeForm
 from tests.integration.test_ui import TestUI
@@ -23,42 +25,42 @@ class TestBrowserTabs(TestUI):
 
     def test_handle_tab(self):
         tab_handles = BrowserServices.Instance.browser.tabs.tab_handles
-        assert 1 == len(tab_handles), "Tab number should be correct"
-        assert tab_handles[0], "Tab handle should not be empty"
+        assert 1 == len(tab_handles), 'Tab number should be correct'
+        assert tab_handles[0], 'Tab handle should not be empty'
 
     def test_open_new_tab(self):
         tab_handle = BrowserServices.Instance.browser.tabs.current_tab_handle
 
         BrowserServices.Instance.browser.tabs.open_new_tab()
         new_tab_handle = BrowserServices.Instance.browser.tabs.current_tab_handle
-        assert 2 == len(BrowserServices.Instance.browser.tabs.tab_handles), "New tab should be opened"
-        assert tab_handle != new_tab_handle, "Browser should be switched to new tab"
+        assert 2 == len(BrowserServices.Instance.browser.tabs.tab_handles), 'New tab should be opened'
+        assert tab_handle != new_tab_handle, 'Browser should be switched to new tab'
 
         BrowserServices.Instance.browser.tabs.open_new_tab(False)
-        assert 3 == len(BrowserServices.Instance.browser.tabs.tab_handles), "New tab should be opened"
+        assert 3 == len(BrowserServices.Instance.browser.tabs.tab_handles), 'New tab should be opened'
         assert (
             BrowserServices.Instance.browser.tabs.current_tab_handle == new_tab_handle
-        ), "Browser should not be switched to new tab"
+        ), 'Browser should not be switched to new tab'
 
     def test_open_new_tab_via_js(self):
         tab_handle = BrowserServices.Instance.browser.tabs.current_tab_handle
 
         BrowserServices.Instance.browser.tabs.open_new_tab_via_js()
         new_tab_handle = BrowserServices.Instance.browser.tabs.current_tab_handle
-        assert 2 == len(BrowserServices.Instance.browser.tabs.tab_handles), "New tab should be opened"
-        assert tab_handle != new_tab_handle, "Browser should be switched to new tab"
+        assert 2 == len(BrowserServices.Instance.browser.tabs.tab_handles), 'New tab should be opened'
+        assert tab_handle != new_tab_handle, 'Browser should be switched to new tab'
 
         BrowserServices.Instance.browser.tabs.open_new_tab_via_js(False)
-        assert 3 == len(BrowserServices.Instance.browser.tabs.tab_handles), "New tab should be opened"
+        assert 3 == len(BrowserServices.Instance.browser.tabs.tab_handles), 'New tab should be opened'
         assert (
             BrowserServices.Instance.browser.tabs.current_tab_handle == new_tab_handle
-        ), "Browser should not be switched to new tab"
+        ), 'Browser should not be switched to new tab'
 
     def test_close_tab(self):
         self.welcome_form.elemental_selenium_link.click()
-        assert 2 == len(BrowserServices.Instance.browser.tabs.tab_handles), "New tab should be opened"
+        assert 2 == len(BrowserServices.Instance.browser.tabs.tab_handles), 'New tab should be opened'
         BrowserServices.Instance.browser.tabs.close_tab()
-        assert 1 == len(BrowserServices.Instance.browser.tabs.tab_handles), "New tab should be closed"
+        assert 1 == len(BrowserServices.Instance.browser.tabs.tab_handles), 'New tab should be closed'
 
     def test_switch_to_new_tab(self):
         def _predicate():
@@ -107,7 +109,7 @@ class TestBrowserTabs(TestUI):
             BrowserServices.Instance.browser.tabs.switch_to_tab(20, True)
         except IndexError:
             return
-        assert False, "Expected IndexError"
+        pytest.fail('Expected IndexError')
 
     def _check_switching_by(self, exp_count, switch_method: Callable):
         self.welcome_form.elemental_selenium_link.click()
@@ -115,5 +117,5 @@ class TestBrowserTabs(TestUI):
         switch_method()
         assert (
             new_tab_handle == BrowserServices.Instance.browser.tabs.current_tab_handle
-        ), "Browser should be switched to correct tab"
-        assert exp_count == len(BrowserServices.Instance.browser.tabs.tab_handles), "Number of tabs should be correct"
+        ), 'Browser should be switched to correct tab'
+        assert exp_count == len(BrowserServices.Instance.browser.tabs.tab_handles), 'Number of tabs should be correct'

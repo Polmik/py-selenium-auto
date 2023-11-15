@@ -2,13 +2,15 @@
 
 # formatter
 black
-black[d]
 
 # reorder imports
 isort
 
 # linter
 flake8
+
+# linter
+pydocstyle
 
 # linter plugins
 # for more useful plugins:
@@ -27,6 +29,3 @@ pep8-naming
 
 # type-hints checker
 mypy
-
-# for tests
-# pytest
