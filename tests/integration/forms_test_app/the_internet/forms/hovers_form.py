@@ -102,7 +102,7 @@ class HoversForm(TheInternetForm):
         )
 
     def get_child_elements_by_dotted_xpath(self, state: ElementState, count: ElementsCount) -> List[Label]:
-        return self._form_element.find_elements(
+        return self._form_element.find_child_elements(
             Label,
             self._dotted_xpath,
             'Child by dotted xpath',
