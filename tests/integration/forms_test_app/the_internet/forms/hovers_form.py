@@ -36,14 +36,14 @@ class HoversForm(TheInternetForm):
         return 'hovers'
 
     def get_hidden_element(self, example: HoverExample, state: ElementState = ElementState.Displayed) -> Label:
-        return Label(
+        return self._element_factory.get_label(
             Locator(By.XPATH, self._hidden_element_tmp_loc.format(example.value)),
             f'Hidden element for {example.name} example',
             state,
         )
 
     def get_example(self, example: HoverExample) -> Label:
-        return Label(
+        return self._element_factory.get_label(
             Locator(By.XPATH, self._example_tmp_loc.format(example.value)),
             f'{example} example',
         )

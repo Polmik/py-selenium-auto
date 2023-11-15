@@ -20,18 +20,25 @@ from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 from selenium.webdriver.remote.shadowroot import ShadowRoot
 
 from py_selenium_auto.browsers.browser import Browser
-from py_selenium_auto.browsers.browser_services import BrowserServices
+
 from py_selenium_auto.browsers.java_script import JavaScript
 from py_selenium_auto.configurations.browser_profile import BrowserProfile
 from py_selenium_auto.elements.actions.js_actions import JsActions
 from py_selenium_auto.elements.actions.mouse_actions import MouseActions
-from py_selenium_auto.elements.element_factory import ElementFactory
 from py_selenium_auto.elements.element_state_provider import ElementStateProvider
 from py_selenium_auto.elements.highlight_state import HighlightState
+
+if typing.TYPE_CHECKING:
+    from py_selenium_auto.elements.element_factory import ElementFactory
+
 
 
 class Element(CoreElement, abc.ABC):
     """Defines base class for any UI element."""
+    
+    def __browser_service(self):
+        from py_selenium_auto.browsers.browser_services import BrowserServices
+        return BrowserServices.Instance
 
     @property
     def visual(self):
@@ -55,7 +62,7 @@ class Element(CoreElement, abc.ABC):
 
     @property
     def browser_profile(self) -> BrowserProfile:
-        return BrowserServices.Instance.service_provider.browser_profile()
+        return self.__browser_service().service_provider.browser_profile()
 
     @property
     def js_actions(self) -> JsActions:
@@ -73,23 +80,23 @@ class Element(CoreElement, abc.ABC):
 
     @property
     def application(self):
-        return BrowserServices.Instance.browser
+        return self.__browser_service().browser
 
     @property
     def action_retrier(self) -> ActionRetrier:
-        return BrowserServices.Instance.service_provider.action_retrier()
+        return self.__browser_service().service_provider.action_retrier()
 
     @property
-    def custom_factory(self) -> ElementFactory:
-        return BrowserServices.Instance.service_provider.element_factory()
+    def custom_factory(self) -> 'ElementFactory':
+        return self.__browser_service().service_provider.element_factory()
 
     @property
-    def factory(self) -> ElementFactory:
+    def factory(self) -> 'ElementFactory':
         return self.custom_factory
 
     @property
     def custom_finder(self) -> ElementFinder:
-        return BrowserServices.Instance.service_provider.element_finder()
+        return self.__browser_service().service_provider.element_finder()
 
     @property
     def finder(self) -> ElementFinder:
@@ -97,19 +104,19 @@ class Element(CoreElement, abc.ABC):
 
     @property
     def cache_configuration(self) -> ElementCacheConfiguration:
-        return BrowserServices.Instance.service_provider.element_cache_configuration()
+        return self.__browser_service().service_provider.element_cache_configuration()
 
     @property
     def localized_logger(self) -> LocalizedLogger:
-        return BrowserServices.Instance.service_provider.localized_logger()
+        return self.__browser_service().service_provider.localized_logger()
 
     @property
     def localization_manager(self) -> LocalizationManager:
-        return BrowserServices.Instance.service_provider.localization_manager()
+        return self.__browser_service().service_provider.localization_manager()
 
     @property
     def conditional_wait(self) -> ConditionalWait:
-        return BrowserServices.Instance.service_provider.conditional_wait()
+        return self.__browser_service().service_provider.conditional_wait()
 
     def click_and_wait(self):
         """Clicks the element and waits for page to load."""
