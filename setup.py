@@ -14,7 +14,7 @@ with _open("requirements.txt") as requirements_file:
     requirements = requirements_file.readlines()
 
 setuptools.setup(name="py-selenium-auto",
-                 version="0.4.1",
+                 version="0.4.2",
                  description="Selenium for Python",
                  long_description=description,
                  long_description_content_type="text/markdown",
@@ -23,6 +23,7 @@ setuptools.setup(name="py-selenium-auto",
                  maintainer="Egor Ryaboshapko",
                  maintainer_email="mrpolmik@hotmail.com",
                  url="https://github.com/Polmik/py-selenium-auto",
+                 license="Apache",
                  license_files=('LICENSE',),
                  keywords=['testing', 'selenium', 'driver', 'test automation'],
                  include_package_data=True,
