@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional, Callable, TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable, Optional
 
 from py_selenium_auto_core.applications.application import Application
 from py_selenium_auto_core.applications.core_services import CoreServices
@@ -8,13 +8,12 @@ from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
 from py_selenium_auto_core.logging.logger import Logger
 from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
-
 from py_selenium_auto.browsers.browser_factory.local_browser_factory import (
     LocalBrowserFactory,
 )
 from py_selenium_auto.browsers.browser_startup import (
-    BrowserStartup,
     BrowserServiceProvider,
+    BrowserStartup,
 )
 
 if TYPE_CHECKING:

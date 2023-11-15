@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, overload, Optional
+from typing import Any, Optional, overload
 
 from py_selenium_auto_core.applications.application import Application
 from py_selenium_auto_core.localization.localization_manager import LocalizationManager

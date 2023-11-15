@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Callable, Optional
 
-from dependency_injector.providers import Singleton, Factory, Self
+from dependency_injector.providers import Factory, Self, Singleton
 from py_selenium_auto_core.applications.startup import ServiceProvider, Startup
 from py_selenium_auto_core.localization.localization_manager import LocalizationManager
 from py_selenium_auto_core.logging.logger import Logger
@@ -15,8 +15,6 @@ from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
 from py_selenium_auto.configurations.browser_profile import BrowserProfile
 from py_selenium_auto.configurations.timeout_configuration import TimeoutConfiguration
-
-
 from py_selenium_auto.elements.element_factory import ElementFactory
 
 

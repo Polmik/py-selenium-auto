@@ -1,4 +1,4 @@
-from typing import Type, TYPE_CHECKING
+from typing import TYPE_CHECKING, Type
 
 from py_selenium_auto_core.elements.constants.element_state import ElementState
 from py_selenium_auto_core.localization.localized_logger import LocalizedLogger

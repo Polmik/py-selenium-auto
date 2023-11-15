@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, overload, Optional
+from typing import List, Optional, overload
 
 from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
 from selenium.webdriver.remote.webdriver import WebDriver

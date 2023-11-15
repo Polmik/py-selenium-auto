@@ -1,4 +1,4 @@
-from typing import TypeVar, Type, TYPE_CHECKING
+from typing import TYPE_CHECKING, Type, TypeVar
 
 from py_selenium_auto_core.elements.element_factory import (
     ElementFactory as CoreElementFactory,
@@ -16,9 +16,11 @@ from py_selenium_auto_core.elements.element_factory import (
 # from py_selenium_auto.elements.text_box import TextBox
 
 if TYPE_CHECKING:
-    from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
     from py_selenium_auto_core.elements.element_finder import ElementFinder
-    from py_selenium_auto_core.localization.localization_manager import LocalizationManager
+    from py_selenium_auto_core.localization.localization_manager import (
+        LocalizationManager,
+    )
+    from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
 # T = TypeVar("T", bound=Element, covariant=True)
 

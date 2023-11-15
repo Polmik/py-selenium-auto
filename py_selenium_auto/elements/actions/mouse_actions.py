@@ -1,4 +1,4 @@
-from typing import Callable, TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable
 
 from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
 from py_selenium_auto_core.utilities.action_retrier import ActionRetrier
