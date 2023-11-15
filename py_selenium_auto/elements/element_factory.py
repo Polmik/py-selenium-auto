@@ -3,9 +3,12 @@ from typing import TYPE_CHECKING, Type, TypeVar
 from py_selenium_auto_core.elements.element_factory import (
     ElementFactory as CoreElementFactory,
 )
+from py_selenium_auto_core.locator.locator import Locator
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
-# from py_selenium_auto_core.locator.locator import Locator
-#
+from py_selenium_auto.browsers.java_script import JavaScript
+
 # from py_selenium_auto.elements.button import Button
 # from py_selenium_auto.elements.check_box import CheckBox
 # from py_selenium_auto.elements.combo_box import ComboBox
@@ -26,6 +29,7 @@ if TYPE_CHECKING:
 
 
 class ElementFactory(CoreElementFactory):
+
     def __init__(
         self,
         conditional_wait: 'ConditionalWait',
@@ -33,6 +37,15 @@ class ElementFactory(CoreElementFactory):
         localization_manager: 'LocalizationManager',
     ):
         super().__init__(conditional_wait, element_finder, localization_manager)
+
+    def _generate_xpath_locator(self, locator: Locator, web_element: WebElement = None, index: int = None) -> Locator:
+        if self._is_locator_supported(locator):
+            return super()._generate_xpath_locator(locator, web_element, index)
+        xpath_locator = self._conditional_wait.wait_for_driver(
+            lambda driver: driver.execute_script(JavaScript.GetElementXPath.script_from_file, web_element),
+            message='XPath generation failed',
+        )
+        return Locator(By.XPATH, xpath_locator)
 
     # def get_button(self, locator: Locator, name: str, state: ElementState = ElementState.Displayed) -> Button:
     #     return self.get(Button, locator, name, state)
