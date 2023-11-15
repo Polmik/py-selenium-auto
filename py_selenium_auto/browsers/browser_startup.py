@@ -48,15 +48,16 @@ class BrowserServiceProvider(ServiceProvider):
 
 
 class BrowserStartup(Startup):
-    @staticmethod
+    @classmethod
     def configure_services(
+        cls,
         application_provider: Callable,
         settings: Optional[JsonSettingsFile] = None,
         service_provider: BrowserServiceProvider = None,
     ) -> BrowserServiceProvider:
         ServiceProvider.override(BrowserServiceProvider)
-        settings = settings or BrowserStartup.get_settings()
-        service_provider: BrowserServiceProvider = Startup.configure_services(
+        settings = settings or cls.get_settings()
+        service_provider: BrowserServiceProvider = super().configure_services(
             application_provider=application_provider,
             settings=settings,
             service_provider=BrowserServiceProvider(),
@@ -66,8 +67,8 @@ class BrowserStartup(Startup):
         ServiceProvider.reset_override()
         return service_provider
 
-    @staticmethod
-    def get_settings() -> JsonSettingsFile:
+    @classmethod
+    def get_settings(cls) -> JsonSettingsFile:
         profile_name = EnvironmentConfiguration.get_variable('profile')
         settings_profile = 'settings.json' if not profile_name else f'settings.{profile_name}.json'
         Logger.debug(f'Get settings from: {settings_profile}')
