@@ -1,3 +1,6 @@
+import pytest
+from selenium.common import TimeoutException
+
 from tests.integration.forms_test_app.the_internet.forms.dynamic_controls_form import DynamicControlsForm
 from tests.integration.test_ui import TestUI
 
@@ -46,4 +49,13 @@ class TestElementState(TestUI):
         assert self.form.text_input_text_box.state.wait_for_exist(), 'Checkbox example should be exist after adding'
 
     def test_wait_for_element_is_clickable(self):
-        pass
+        try:
+            self.form.text_input_text_box.state.wait_for_clickable(3)
+        except TimeoutException:
+            ...
+        else:
+            pytest.fail("Expected TimeoutException")
+
+        self.form.change_input_state_button.click()
+        self.form.text_input_text_box.state.wait_for_clickable()
+        assert self.form.text_input_text_box.state.is_clickable(), "Textbox should be clickable after changing state"
