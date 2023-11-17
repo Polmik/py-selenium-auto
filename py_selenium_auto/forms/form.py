@@ -14,7 +14,7 @@ class Form(CoreForm, abc.ABC):
     def __init__(self, locator: Locator, name: str):
         self._locator = locator
         self._name = name
-        self._form_element = Label(locator, name)
+        self._form_element = self._element_factory.get_label(locator, name)
 
     @property
     def name(self) -> str:

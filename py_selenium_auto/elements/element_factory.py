@@ -30,6 +30,16 @@ T = TypeVar('T', bound=Element, covariant=True)
 
 
 class ElementFactory(CoreElementFactory):
+    """Factory that creates elements.
+
+    Supported locators:
+        By.ID
+        By.CLASS_NAME
+        By.NAME
+        By.TAG_NAME
+        By.XPATH
+        By.CSS_SELECTOR
+    """
 
     def __init__(
         self,
@@ -42,10 +52,16 @@ class ElementFactory(CoreElementFactory):
     def _generate_xpath_locator(self, locator: Locator, web_element: WebElement = None, index: int = None) -> Locator:
         if self._is_locator_supported(locator):
             return super()._generate_xpath_locator(locator, web_element, index)
-        xpath_locator = self._conditional_wait.wait_for_driver(
-            lambda driver: driver.execute_script(JavaScript.GetElementXPath.script_from_file, web_element),
-            message='XPath generation failed',
-        )
+        elif locator.by == By.CSS_SELECTOR:
+            xpath_locator = self._conditional_wait.wait_for_driver(
+                lambda driver: driver.execute_script(JavaScript.GetXPathFromCss.script_from_file, locator.value),
+                message='XPath generation failed from CSS',
+            )
+        else:
+            xpath_locator = self._conditional_wait.wait_for_driver(
+                lambda driver: driver.execute_script(JavaScript.GetElementXPath.script_from_file, web_element),
+                message='XPath generation failed',
+            )
         return Locator(By.XPATH, xpath_locator)
 
     def get_button(self, locator: Locator, name: str, state: ElementState = ElementState.Displayed) -> Button:

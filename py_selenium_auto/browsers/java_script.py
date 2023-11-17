@@ -25,6 +25,7 @@ class JavaScript(enum.Enum):
     GetTextFirstChild = 'get_text_first_child.js'
     GetViewPortCoordinates = 'get_view_port_coordinates.js'
     GetWindowSize = 'get_window_size.js'
+    GetXPathFromCss = 'get_x_path_from_css.js'
     IsPageLoaded = 'is_page_loaded.js'
     IsTouchEnabled = 'is_touch_enabled.js'
     MouseHover = 'mouse_hover.js'
