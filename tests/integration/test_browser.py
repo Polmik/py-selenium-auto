@@ -87,7 +87,7 @@ class TestBrowser(TestUI):
             pytest.param('get_current_url.js'),
             pytest.param(Path('get_current_url.js')),
             pytest.param(Path('resources', 'get_current_url.js')),
-        ]
+        ],
     )
     def test_execute_java_script_from_file(self, script_path):
         dynamic_content_form = DynamicContentForm()

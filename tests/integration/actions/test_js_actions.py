@@ -127,13 +127,15 @@ class TestJsActions(TestUI):
         form.open()
         form.get_example_link(AvailableExample.Hovers).js_actions.scroll_to_the_center()
 
-        windows_size = BrowserServices.Instance.browser.execute_script_from_file("get_window_size.js")
+        windows_size = BrowserServices.Instance.browser.execute_script_from_file('get_window_size.js')
         current_y = BrowserServices.Instance.browser.execute_script_from_file(
-            "get_element_y_coordinate.js",
+            'get_element_y_coordinate.js',
             form.get_example_link(AvailableExample.Hovers).get_element(),
         )
         coordinate_relating_window_center = float(windows_size) / 2 - current_y
-        assert abs(coordinate_relating_window_center) <= accuracy, "Upper bound of element should be in the center of the page"
+        assert (
+            abs(coordinate_relating_window_center) <= accuracy
+        ), 'Upper bound of element should be in the center of the page'
 
     def test_scroll_to_the_center_check_ui(self):
         form = InfiniteScrollForm()

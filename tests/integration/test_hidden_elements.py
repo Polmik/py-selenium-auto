@@ -10,7 +10,6 @@ from tests.integration.test_ui import TestUI
 
 
 class TestHiddenElements(TestUI):
-
     form = HoversForm()
 
     element_functions = (

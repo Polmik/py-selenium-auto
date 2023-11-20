@@ -15,7 +15,7 @@ class FileDownloaderForm(TheInternetForm):
         )
 
     @property
-    def file_name(self) -> str:
+    def filename(self) -> str:
         return 'some-file.txt'
 
     @property

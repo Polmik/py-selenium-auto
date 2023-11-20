@@ -6,7 +6,6 @@ from tests.integration.test_ui import TestUI
 
 
 class TestElementState(TestUI):
-
     form = DynamicControlsForm()
 
     def setup_method(self):
@@ -32,19 +31,29 @@ class TestElementState(TestUI):
     def test_wait_for_element_enabled_state(self):
         assert self.form.state.wait_for_displayed(), "Form 'Dynamic Controls' should be displayed"
         self.form.change_input_state_button.click()
-        assert self.form.text_input_text_box.state.wait_for_enabled(), 'Text input should be enable after changing state'
+        assert (
+            self.form.text_input_text_box.state.wait_for_enabled()
+        ), 'Text input should be enable after changing state'
         self.form.change_input_state_button.click()
-        assert self.form.text_input_text_box.state.wait_for_not_enabled(), 'Text input should be disabled after changing state'
+        assert (
+            self.form.text_input_text_box.state.wait_for_not_enabled()
+        ), 'Text input should be disabled after changing state'
 
     def test_wait_for_element_displayed_state(self):
         self.form.remove_add_example_button.click()
-        assert self.form.example_checkbox.state.wait_for_not_displayed(), 'Checkbox example should not be displayed after removing'
+        assert (
+            self.form.example_checkbox.state.wait_for_not_displayed()
+        ), 'Checkbox example should not be displayed after removing'
         self.form.remove_add_example_button.click()
-        assert self.form.text_input_text_box.state.wait_for_displayed(), 'Checkbox example should be displayed after adding'
+        assert (
+            self.form.text_input_text_box.state.wait_for_displayed()
+        ), 'Checkbox example should be displayed after adding'
 
     def test_wait_for_element_exist_state(self):
         self.form.remove_add_example_button.click()
-        assert self.form.example_checkbox.state.wait_for_not_exist(), 'Checkbox example should not be exist after removing'
+        assert (
+            self.form.example_checkbox.state.wait_for_not_exist()
+        ), 'Checkbox example should not be exist after removing'
         self.form.remove_add_example_button.click()
         assert self.form.text_input_text_box.state.wait_for_exist(), 'Checkbox example should be exist after adding'
 
@@ -54,8 +63,8 @@ class TestElementState(TestUI):
         except TimeoutException:
             ...
         else:
-            pytest.fail("Expected TimeoutException")
+            pytest.fail('Expected TimeoutException')
 
         self.form.change_input_state_button.click()
         self.form.text_input_text_box.state.wait_for_clickable()
-        assert self.form.text_input_text_box.state.is_clickable(), "Textbox should be clickable after changing state"
+        assert self.form.text_input_text_box.state.is_clickable(), 'Textbox should be clickable after changing state'
