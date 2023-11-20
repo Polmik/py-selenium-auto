@@ -16,19 +16,19 @@ from tests.integration.test_ui import TestUI
 
 
 class TestJsActions(TestUI):
-    def test_possible_to_click(self):
+    def test_click(self):
         welcome_form = WelcomeForm()
         welcome_form.open()
         welcome_form.get_example_link(AvailableExample.Dropdown).js_actions.click()
         assert DropdownForm().state.wait_for_displayed(), 'Dropdown form should be displayed'
 
-    def test_possible_to_click_and_wait(self):
+    def test_click_and_wait(self):
         welcome_form = WelcomeForm()
         welcome_form.open()
         welcome_form.get_example_link(AvailableExample.Dropdown).js_actions.click_and_wait()
         assert DropdownForm().state.wait_for_displayed(), 'Dropdown form should be displayed'
 
-    def test_possible_to_highlight_element(self):
+    def test_highlight_element(self):
         welcome_form = WelcomeForm()
         welcome_form.open()
         dropdown_example = welcome_form.get_example_link(AvailableExample.Dropdown)
@@ -36,13 +36,13 @@ class TestJsActions(TestUI):
         border = dropdown_example.get_css_value('border')
         assert '3px solid rgb(255, 0, 0)' == border, 'Element should be highlighted'
 
-    def test_possible_to_hover_mouse(self):
+    def test_hover_mouse(self):
         menu_form = JQueryMenuForm()
         menu_form.open()
         menu_form.enabled_button.js_actions.hover_mouse()
         assert menu_form.is_enabled_button_focused, 'Element should be focused after hover'
 
-    def test_possible_to_set_mouse(self):
+    def test_set_mouse(self):
         email = 'peter.parker@example.com'
         menu_form = ForgotPasswordForm()
         menu_form.open()
@@ -56,7 +56,7 @@ class TestJsActions(TestUI):
         menu_form.email_text_box.send_keys(Keys.BACKSPACE)
         assert email[:-1] == menu_form.email_text_box.value, f"One character should be removed from '{current_text}'"
 
-    def test_possible_to_check_is_element_on_screen(self):
+    def test_check_is_element_on_screen(self):
         menu_form = HoversForm()
         menu_form.open()
 
@@ -69,35 +69,35 @@ class TestJsActions(TestUI):
             HoverExample.First,
         ).js_actions.is_element_on_screen(), f'Element for {HoverExample.First} should be visible.'
 
-    def test_possible_to_set_value(self):
+    def test_set_value(self):
         text = 'text'
         form = KeyPressesForm()
         form.open()
         form.input_text_box.js_actions.set_value(text)
         assert text == form.input_text_box.value, f"Text should be '{text}' after setting value via JS"
 
-    def test_possible_to_get_element_text(self):
+    def test_get_element_text(self):
         form = WelcomeForm()
         form.open()
         assert (
             form.sub_title == form.sub_title_label.js_actions.get_element_text()
         ), f'Sub title should be {form.sub_title}'
 
-    def test_possible_to_get_xpath_locator(self):
+    def test_get_xpath_locator(self):
         expected_locator = '/html/body/DIV[2]/DIV[1]/H2[1]'
         form = WelcomeForm()
         form.open()
         actual_locator = form.sub_title_label.js_actions.get_xpath()
         assert expected_locator == actual_locator, f'Locator of sub title should be {expected_locator}'
 
-    @pytest.mark.skip(reason='NotImplemented')
-    def test_possible_to_get_view_port_coordinates(self):
+    @pytest.mark.skip(reason='NotImplemented for get_view_port_coordinates')
+    def test_get_view_port_coordinates(self):
         form = WelcomeForm()
         form.open()
         actual_point = form.sub_title_label.js_actions.get_view_port_coordinates()
         assert len(actual_point) > 0, 'Coordinates of Sub title should not be empty'
 
-    def test_possible_to_scroll_into_view(self):
+    def test_scroll_into_view(self):
         form = InfiniteScrollForm()
         form.open()
         form.wait_for_page_to_load()
@@ -109,21 +109,33 @@ class TestJsActions(TestUI):
 
         BrowserServices.Instance.service_provider.conditional_wait().wait_for_condition(_predicate)
 
-    @pytest.mark.skip(reason='NotImplemented for execute_script_from_file')
-    def test_possible_to_scroll_by(self):
+    def test_scroll_by(self):
+        point = {'x': 50, 'y': 40}
         form = HomeDemoSiteForm()
         form.open()
-        form.first_scrollable_example.js_actions.scroll_by(50, 40)
+        form.first_scrollable_example.js_actions.scroll_by(point['x'], point['y'])
+        current_coordinates = BrowserServices.Instance.browser.execute_script_from_file(
+            'get_scroll_coordinates.js',
+            form.first_scrollable_example.get_element(),
+        )
+        actual_point = {'x': current_coordinates[0], 'y': current_coordinates[1]}
+        assert point == actual_point, f"Current coordinates should be '{point}'"
 
-    @pytest.mark.skip(reason='NotImplemented for execute_script_from_file')
-    def test_possible_to_scroll_to_the_center(self):
+    def test_scroll_to_the_center(self):
         accuracy = 1
         form = WelcomeForm()
         form.open()
         form.get_example_link(AvailableExample.Hovers).js_actions.scroll_to_the_center()
-        windows_size = BrowserServices.Instance.browser.execute_script_from_file()
 
-    def test_possible_to_scroll_to_the_center_check_ui(self):
+        windows_size = BrowserServices.Instance.browser.execute_script_from_file("get_window_size.js")
+        current_y = BrowserServices.Instance.browser.execute_script_from_file(
+            "get_element_y_coordinate.js",
+            form.get_example_link(AvailableExample.Hovers).get_element(),
+        )
+        coordinate_relating_window_center = float(windows_size) / 2 - current_y
+        assert abs(coordinate_relating_window_center) <= accuracy, "Upper bound of element should be in the center of the page"
+
+    def test_scroll_to_the_center_check_ui(self):
         form = InfiniteScrollForm()
         form.open()
         form.wait_for_page_to_load()
