@@ -40,7 +40,9 @@ class DriverSettings(abc.ABC):
     @property
     def download_dir(self) -> str:
         if self.download_dir_capability_key in self._browser_options:
-            path = self._browser_options.get(self.download_dir_capability_key)
+            path: str = self._browser_options.get(self.download_dir_capability_key)
+            if os.name != "nt":
+                path = path.replace("\\\\", "\\").replace("\\", "/")
             if os.path.isabs(path):
                 return path
             return os.path.abspath(Path(Path(RootPathHelper.calling_root_path()).parent, path))
