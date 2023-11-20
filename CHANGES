@@ -1,3 +1,11 @@
+v0.4.3
+* Updated py-selenium-auto-core==0.5.3
+* Support for CSS conversion to XPath selectors for find_elements and find_child_elements
+* Updated getting path for some objects. Removed hard root_path
+* Added execute_script_from_file in Browser
+* Some refactoring
+* Added tests
+
 v0.4.2
 * Updated py-selenium-auto-core==0.5.2
 * Added method to get xpath for non-supported elements using JS via ElementFactory

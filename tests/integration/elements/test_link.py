@@ -16,12 +16,12 @@ class TestLink(TestUI):
     def setup_method(self):
         self.redirector_form.open()
 
-    def test_possible_to_click(self):
+    def test_click(self):
         self.redirector_form.redirect_link.click()
         _wait_for_redirect()
         assert StatusCodesForm().url.lower() == BrowserServices.Instance.browser.current_url.lower()
 
-    def test_possible_to_get_href(self):
+    def test_get_href(self):
         BrowserServices.Instance.browser.go_to(self.redirector_form.redirect_link.href)
         _wait_for_redirect()
         assert StatusCodesForm().url.lower() == BrowserServices.Instance.browser.current_url.lower()

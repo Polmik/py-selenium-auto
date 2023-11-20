@@ -2,8 +2,7 @@ import enum
 import os.path
 
 from py_selenium_auto_core.utilities.file_reader import FileReader
-
-from py_selenium_auto import ROOT_PATH_PROJECT
+from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 
 
 class JavaScript(enum.Enum):
@@ -25,6 +24,7 @@ class JavaScript(enum.Enum):
     GetTextFirstChild = 'get_text_first_child.js'
     GetViewPortCoordinates = 'get_view_port_coordinates.js'
     GetWindowSize = 'get_window_size.js'
+    GetXPathFromCss = 'get_x_path_from_css.js'
     IsPageLoaded = 'is_page_loaded.js'
     IsTouchEnabled = 'is_touch_enabled.js'
     MouseHover = 'mouse_hover.js'
@@ -45,4 +45,7 @@ class JavaScript(enum.Enum):
 
     @property
     def script_from_file(self):
-        return FileReader.get_resource_file(os.path.join('java_scripts', self.value), ROOT_PATH_PROJECT)
+        return FileReader.get_resource_file(
+            os.path.join('java_scripts', self.value),
+            RootPathHelper.current_root_path(__file__),
+        )

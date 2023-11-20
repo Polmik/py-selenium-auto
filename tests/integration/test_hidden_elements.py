@@ -10,7 +10,6 @@ from tests.integration.test_ui import TestUI
 
 
 class TestHiddenElements(TestUI):
-
     form = HoversForm()
 
     element_functions = (
@@ -20,8 +19,7 @@ class TestHiddenElements(TestUI):
         lambda state, count: TestHiddenElements.form.get_list_elements_by_css(state, count),
         lambda state, count: TestHiddenElements.form.get_list_elements_by_dotted_xpath(state, count),
         lambda state, count: TestHiddenElements.form.get_child_elements_by_dotted_xpath(state, count),
-        #  TODO: Skipped until ElementFactory is fixed.
-        #  lambda state, count: [TestHiddenElements.form.get_child_element_by_non_xpath(state)],
+        lambda state, count: [TestHiddenElements.form.get_child_element_by_non_xpath(state)],
     )
 
     def setup_method(self):

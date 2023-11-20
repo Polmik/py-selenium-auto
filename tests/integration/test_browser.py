@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 from py_selenium_auto_core.utilities.environment_configuration import EnvironmentConfiguration
 from py_selenium_auto_core.utilities.json_settings_file import JsonSettingsFile
@@ -79,11 +81,18 @@ class TestBrowser(TestUI):
         current_url = BrowserServices.Instance.browser.execute_script('return window.location.href')
         assert current_url == DynamicContentForm().url
 
-    @pytest.mark.skip(reason='NotImplemented for execute_script_from_file')
-    def test_execute_java_script_from_file(self):
+    @pytest.mark.parametrize(
+        argnames='script_path',
+        argvalues=[
+            pytest.param('get_current_url.js'),
+            pytest.param(Path('get_current_url.js')),
+            pytest.param(Path('resources', 'get_current_url.js')),
+        ],
+    )
+    def test_execute_java_script_from_file(self, script_path):
         dynamic_content_form = DynamicContentForm()
         dynamic_content_form.open()
-        current_url = BrowserServices.Instance.browser.execute_script_from_file('return window.location.href')
+        current_url = BrowserServices.Instance.browser.execute_script_from_file(script_path)
         assert current_url == dynamic_content_form.url
 
     def test_execute_java_script_from_predefined_file(self):

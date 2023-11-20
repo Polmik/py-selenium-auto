@@ -1,9 +1,9 @@
 import abc
 import os
+from pathlib import Path
 
+from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 from selenium.webdriver.common.options import ArgOptions
-
-from py_selenium_auto import ROOT_PATH_PROJECT
 
 
 class DriverSettings(abc.ABC):
@@ -40,10 +40,12 @@ class DriverSettings(abc.ABC):
     @property
     def download_dir(self) -> str:
         if self.download_dir_capability_key in self._browser_options:
-            path = self._browser_options.get(self.download_dir_capability_key)
+            path: str = self._browser_options.get(self.download_dir_capability_key)
+            if os.name != "nt":
+                path = path.replace("\\\\", "\\").replace("\\", "/")
             if os.path.isabs(path):
                 return path
-            return os.path.abspath(os.path.join(ROOT_PATH_PROJECT, path))
+            return os.path.abspath(Path(Path(RootPathHelper.calling_root_path()).parent, path))
         raise ValueError(
             f'Failed to find {self.download_dir_capability_key} option in settings profile for {self.browser_name}',
         )

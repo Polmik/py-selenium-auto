@@ -3,12 +3,14 @@
 [![Latest Version](https://img.shields.io/pypi/v/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
 [![License](https://img.shields.io/pypi/l/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
-[![Supported Python implementations](https://img.shields.io/pypi/implementation/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
 [![Build Status](https://github.com/Polmik/py-selenium-auto/actions/workflows/tests.yml/badge.svg)](https://github.com/Polmik/py-selenium-auto/actions/workflows/tests.yml)
 [![Coverage Status](https://codecov.io/gh/Polmik/py-selenium-auto/branch/main/graph/badge.svg)](https://codecov.io/gh/Polmik/py-selenium-auto)
+[![Supported Python implementations](https://img.shields.io/pypi/implementation/py_selenium_auto.svg)](https://pypi.org/project/py-selenium-auto/)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ### Introduction
 
+This package is a library designed to simplify your work with Selenium WebDriver.
 
 ### Supported Python Versions
 

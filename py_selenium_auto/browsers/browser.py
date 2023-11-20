@@ -1,10 +1,14 @@
 from __future__ import annotations
 
+import os
+from pathlib import Path
 from typing import Any, Optional, overload
 
 from py_selenium_auto_core.applications.application import Application
 from py_selenium_auto_core.localization.localization_manager import LocalizationManager
 from py_selenium_auto_core.localization.localized_logger import LocalizedLogger
+from py_selenium_auto_core.utilities.file_reader import FileReader
+from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 from selenium.common import NoAlertPresentException
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -265,6 +269,34 @@ class Browser(Application):
         """
         if isinstance(script, JavaScript):
             script = script.script_from_file
+        return self.driver.execute_script(script, *args)
+
+    def execute_script_from_file(self, script_path, *args) -> Any:
+        """Executes JS script from resource file
+
+        :arg:
+            script_path: Path to JSScript
+            :arg: Script arguments
+
+        :returns:
+            Script execution result
+        """
+        if os.path.exists(script_path):
+            with open(script_path, "r", encoding="utf-8") as file:
+                script = file.read()
+        elif os.path.exists(Path(RootPathHelper.calling_root_path(), script_path)):
+            with open(Path(RootPathHelper.calling_root_path(), script_path), "r", encoding="utf-8") as file:
+                script = file.read()
+        elif os.path.exists(Path(RootPathHelper.current_root_path(__file__), script_path)):
+            with open(Path(RootPathHelper.current_root_path(__file__), script_path), "r", encoding="utf-8") as file:
+                script = file.read()
+        elif FileReader.is_resource_file_exist(script_path, RootPathHelper.calling_root_path()):
+            script = FileReader.get_resource_file(script_path, RootPathHelper.calling_root_path())
+        elif FileReader.is_resource_file_exist(script_path, RootPathHelper.current_root_path(__file__)):
+            script = FileReader.get_resource_file(script_path, RootPathHelper.current_root_path(__file__))
+        else:
+            raise FileNotFoundError
+
         return self.driver.execute_script(script, *args)
 
     def set_windows_size(self, width: int, height: int):
