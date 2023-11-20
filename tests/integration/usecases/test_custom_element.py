@@ -9,7 +9,7 @@ from tests.integration.test_ui import TestUI
 
 class CustomTextBox(TextBox):
     def __init__(self, locator: Locator, name: str, element_state: ElementState):
-        super().__init__(locator, name, ElementState.ExistsInAnyState)
+        super().__init__(locator, name, element_state)
 
     @property
     def text(self) -> str:
@@ -24,7 +24,7 @@ class TestCustomElement(TestUI):
 
     def test_create_custom_text_box(self):
         username_txb = self.form.user_name_text_box
-        username_custom_txb = CustomTextBox(username_txb.locator, username_txb.name)
+        username_custom_txb = CustomTextBox(username_txb.locator, username_txb.name, ElementState.ExistsInAnyState)
 
         username_txb.type('wrong')
         username_custom_txb.type('right')
