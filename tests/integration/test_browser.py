@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 from py_selenium_auto_core.utilities.environment_configuration import EnvironmentConfiguration
+from py_selenium_auto_core.utilities.functional import Timer
 from py_selenium_auto_core.utilities.json_settings_file import JsonSettingsFile
 from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 from selenium.common import TimeoutException, NoSuchElementException
@@ -10,7 +11,6 @@ from selenium.webdriver.common.devtools.v115.system_info import Size
 
 from py_selenium_auto.browsers.browser_services import BrowserServices
 from py_selenium_auto.browsers.java_script import JavaScript
-from py_selenium_auto.utilities.timer import Timer
 from tests.integration.forms_test_app.the_internet.forms.authentication_form import AuthenticationForm
 from tests.integration.forms_test_app.the_internet.forms.checkboxes_form import CheckBoxesForm
 from tests.integration.forms_test_app.the_internet.forms.dynamic_content_form import DynamicContentForm
@@ -160,8 +160,7 @@ class TestBrowser(TestUI):
         wait_time = 5
         BrowserServices.Instance.browser.set_implicit_wait_timeout(wait_time)
 
-        timer = Timer()
-        with timer:
+        with Timer() as timer:
             try:
                 BrowserServices.Instance.browser.driver.find_element(By.ID, 'not_exist_element')
             except NoSuchElementException:
