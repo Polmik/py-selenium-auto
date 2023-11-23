@@ -1,3 +1,9 @@
+v0.4.4
+* Updated py-selenium-auto-core==0.5.4
+* Fixed BrowserServices.Instance.set_startup to set a new value
+* Moved Timer to py-selenium-auto-core
+* Moved CoreForm to py-selenium-auto-core
+
 v0.4.3
 * Updated py-selenium-auto-core==0.5.3
 * Support for CSS conversion to XPath selectors for find_elements and find_child_elements
@@ -42,7 +48,7 @@ v0.3.2
 
 v0.3.1
 * Updated project structure
-* Renamed package to py_selenium_auto_core
+* Renamed package to py_selenium_auto
 * Added setup.py
 * Added some tests
 * Added .coveragerc
