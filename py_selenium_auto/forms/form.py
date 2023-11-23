@@ -1,13 +1,12 @@
 import abc
 
+from py_selenium_auto_core.forms.core_form import CoreForm
 from py_selenium_auto_core.locator.locator import Locator
 from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
 from py_selenium_auto.browsers.browser_services import BrowserServices
 from py_selenium_auto.elements.element_factory import ElementFactory
 from py_selenium_auto.elements.element_state_provider import ElementStateProvider
-from py_selenium_auto.elements.label import Label
-from py_selenium_auto.forms.core_form import CoreForm
 
 
 class Form(CoreForm, abc.ABC):

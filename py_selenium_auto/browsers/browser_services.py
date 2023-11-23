@@ -56,13 +56,11 @@ class BrowserServices:
             self._set_application(value)
 
         @property
-        def _start_browser_function(
-            self,
-        ) -> Callable[['BrowserServiceProvider'], Browser]:
+        def _start_browser_function(self) -> Callable[['BrowserServiceProvider'], Browser]:
             return lambda services: self.browser_factory.browser
 
         def set_startup(self, browser_startup: 'BrowserStartup'):
-            if not browser_startup:
+            if browser_startup:
                 self._browser_startup_container = browser_startup
                 self._set_service_provider(self.__configure_services())
 
