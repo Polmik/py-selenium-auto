@@ -94,10 +94,6 @@ class DriverSettings(abc.ABC):
     def _driver_settings(self) -> dict:
         return self._settings_file.get('driverSettings').get(self.browser_name)
 
-    @property
-    def _use_webdriver_manager(self) -> bool:
-        return self._driver_settings.get('useWebdriverManager', True)
-
     def _set_page_load_strategy(self, options: ArgOptions):
         options.page_load_strategy = self._driver_settings.get('pageLoadStrategy')
 

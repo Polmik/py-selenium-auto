@@ -30,12 +30,11 @@ class LocalBrowserFactory(BrowserFactory):
         driver_service = driver_settings.driver_service
         driver: WebDriver
         if browser_name.lower() == 'chrome':
-            if driver_settings._use_webdriver_manager:
-                driver_version = driver_settings.web_driver_version
-                driver_version = None if driver_version.upper() == 'LATEST' else driver_version
-                driver_manager = ChromeDriverManager(driver_version=driver_version)
-                driver_path = driver_manager.install()
-                driver_service.path = driver_path
+            driver_version = driver_settings.web_driver_version
+            driver_version = None if driver_version.upper() == 'LATEST' else driver_version
+            driver_manager = ChromeDriverManager(driver_version=driver_version)
+            driver_path = driver_manager.install()
+            driver_service.path = driver_path
             self._web_driver = ChromeWebDriver(
                 options=driver_settings.driver_options,
                 service=driver_service,
