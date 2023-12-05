@@ -13,13 +13,13 @@ if TYPE_CHECKING:
 class CheckBoxJsActions(JsActions):
     """Allows to perform actions on elements via JavaScript specific for CheckBoxes."""
 
-    def __init__(self, element: 'Element', element_type: str, logger: LocalizedLogger, browser_profile: BrowserProfile):
+    def __init__(self, element: "Element", element_type: str, logger: LocalizedLogger, browser_profile: BrowserProfile):
         super().__init__(element, element_type, logger, browser_profile)
 
     def is_checked(self) -> bool:
-        self._log_element_action('loc.checkable.get.state')
+        self._log_element_action("loc.checkable.get.state")
         state = self._get_state()
-        self._log_element_action('loc.checkable.state', state)
+        self._log_element_action("loc.checkable.state", state)
         return state
 
     def check(self):
@@ -35,7 +35,7 @@ class CheckBoxJsActions(JsActions):
         self._set_state(not self._get_state())
 
     def _set_state(self, state: bool):
-        self._log_element_action('loc.setting.value', state)
+        self._log_element_action("loc.setting.value", state)
         if state is not self._get_state():
             self.click()
 

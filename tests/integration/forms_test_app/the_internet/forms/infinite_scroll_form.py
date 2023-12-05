@@ -10,13 +10,13 @@ class InfiniteScrollForm(TheInternetForm):
     def __init__(self):
         super().__init__(
             Locator(By.XPATH, "//div[@id='content' and .//h3[contains(.,'Infinite Scroll')]]"),
-            'InfiniteScroll',
+            "InfiniteScroll",
         )
-        self.footer = Label(Locator(By.ID, 'page-footer'), 'Footer')
+        self.footer = Label(Locator(By.ID, "page-footer"), "Footer")
 
     @property
     def _url_part(self) -> str:
-        return 'infinite_scroll'
+        return "infinite_scroll"
 
     @property
     def example_labels(self):

@@ -8,12 +8,12 @@ from tests.integration.forms_test_app.the_internet.forms.the_internet_from impor
 class CheckBoxesForm(TheInternetForm):
     def __init__(self):
         super().__init__(
-            Locator(By.ID, 'checkboxes'),
-            'Checkboxes',
+            Locator(By.ID, "checkboxes"),
+            "Checkboxes",
         )
-        self.first_check_box = CheckBox(Locator(By.XPATH, '//input[1]'), 'First checkBox')
-        self.second_check_box = CheckBox(Locator(By.XPATH, '//input[2]'), 'Second checkBox')
+        self.first_check_box = CheckBox(Locator(By.XPATH, "//input[1]"), "First checkBox")
+        self.second_check_box = CheckBox(Locator(By.XPATH, "//input[2]"), "Second checkBox")
 
     @property
     def _url_part(self) -> str:
-        return 'checkboxes'
+        return "checkboxes"

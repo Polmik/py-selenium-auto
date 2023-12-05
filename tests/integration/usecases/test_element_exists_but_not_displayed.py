@@ -11,7 +11,7 @@ from tests.integration.test_ui import TestUI
 
 class TestElementExistsButNotDisplayed(TestUI):
     form = HoversForm()
-    fake_element = Locator(By.XPATH, '//fake')
+    fake_element = Locator(By.XPATH, "//fake")
     timeout = 1
 
     def setup_method(self):
@@ -29,10 +29,10 @@ class TestElementExistsButNotDisplayed(TestUI):
         except TimeoutException:
             return
         else:
-            pytest.fail('Expected TimeoutException')
+            pytest.fail("Expected TimeoutException")
 
     @pytest.mark.parametrize(
-        argnames='state',
+        argnames="state",
         argvalues=[
             pytest.param(ElementState.Displayed),
             pytest.param(ElementState.ExistsInAnyState),
@@ -41,8 +41,8 @@ class TestElementExistsButNotDisplayed(TestUI):
     def test_throw_no_such_element_exception_when_element_not_found_but_expected_to_be_displayed(self, state):
         element_factory = BrowserServices.Instance.service_provider.element_factory()
         try:
-            element_factory.get_button(self.fake_element, 'Fake', state).get_element(self.timeout)
+            element_factory.get_button(self.fake_element, "Fake", state).get_element(self.timeout)
         except NoSuchElementException:
             return
         else:
-            pytest.fail(f'Expected NoSuchElementException for {state}')
+            pytest.fail(f"Expected NoSuchElementException for {state}")

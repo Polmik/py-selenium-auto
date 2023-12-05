@@ -14,14 +14,14 @@ class TestMouseActions(TestUI):
         form.open()
 
         form.get_example_link(AvailableExample.Dropdown).mouse_actions.click()
-        assert DropdownForm().state.wait_for_displayed(), 'Dropdown form should be displayed'
+        assert DropdownForm().state.wait_for_displayed(), "Dropdown form should be displayed"
 
     def test_double_click(self):
         form = AddRemoveElementsForm()
         form.open()
 
         form.add_button.mouse_actions.double_click()
-        assert 2 == len(form.list_of_delete_buttons), '2 elements should be added after double click'
+        assert 2 == len(form.list_of_delete_buttons), "2 elements should be added after double click"
 
     def test_right_click(self):
         form = ContextMenuForm()
@@ -35,4 +35,4 @@ class TestMouseActions(TestUI):
         form.open()
 
         form.enabled_button.mouse_actions.move_to_element()
-        assert form.is_enabled_button_focused, 'Element should be focused after move mouse'
+        assert form.is_enabled_button_focused, "Element should be focused after move mouse"

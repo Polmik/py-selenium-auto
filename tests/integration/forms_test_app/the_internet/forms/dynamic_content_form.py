@@ -10,13 +10,13 @@ class DynamicContentForm(TheInternetForm):
 
     def __init__(self):
         super().__init__(
-            Locator(By.ID, 'content'),
-            'DynamicContent',
+            Locator(By.ID, "content"),
+            "DynamicContent",
         )
 
     @property
     def _url_part(self) -> str:
-        return 'dynamic_content'
+        return "dynamic_content"
 
     def get_content_item(self, index: int):
-        return Label(Locator(By.XPATH, self.__content_item_xpath_tmpl.format(index)), f'Content item #{index}')
+        return Label(Locator(By.XPATH, self.__content_item_xpath_tmpl.format(index)), f"Content item #{index}")

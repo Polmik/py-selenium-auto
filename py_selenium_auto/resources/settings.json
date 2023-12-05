@@ -5,7 +5,6 @@
   "isElementHighlightEnabled": true,
   "driverSettings": {
     "chrome": {
-      "useWebdriver_manager": true,
       "webDriverVersion": "Latest",
       "capabilities": {
       },

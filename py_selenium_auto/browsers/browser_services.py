@@ -24,11 +24,11 @@ if TYPE_CHECKING:
 class BrowserServices:
     class _BrowserService(CoreServices):
         def __init__(self):
-            self._browser_startup_container: Optional['BrowserStartup'] = None
+            self._browser_startup_container: Optional["BrowserStartup"] = None
             self._browser_factory_container: Optional[BrowserFactory] = None
 
         @property
-        def service_provider(self) -> 'BrowserServiceProvider':
+        def service_provider(self) -> "BrowserServiceProvider":
             return self._get_service_provider(lambda services: self.browser, self.__configure_services)
 
         @property
@@ -56,10 +56,10 @@ class BrowserServices:
             self._set_application(value)
 
         @property
-        def _start_browser_function(self) -> Callable[['BrowserServiceProvider'], Browser]:
+        def _start_browser_function(self) -> Callable[["BrowserServiceProvider"], Browser]:
             return lambda services: self.browser_factory.browser
 
-        def set_startup(self, browser_startup: 'BrowserStartup'):
+        def set_startup(self, browser_startup: "BrowserStartup"):
             if browser_startup:
                 self._browser_startup_container = browser_startup
                 self._set_service_provider(self.__configure_services())
@@ -86,8 +86,9 @@ class BrowserServices:
                 )
             self._browser_factory_container = app_factory
 
-        def __configure_services(self) -> 'BrowserServiceProvider':
+        def __configure_services(self) -> "BrowserServiceProvider":
             from py_selenium_auto.browsers.browser_startup import BrowserStartup
+
             if not self._browser_startup_container:
                 self._browser_startup_container = BrowserStartup()
             return self._browser_startup_container.configure_services(lambda: self.browser)

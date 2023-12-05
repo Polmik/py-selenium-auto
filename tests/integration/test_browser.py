@@ -67,10 +67,10 @@ class TestBrowser(TestUI):
     def test_set_page_load_timeout(self):
         BrowserServices.Instance.browser.set_page_load_timeout(0.1)
         try:
-            BrowserServices.Instance.browser.go_to('https://google.com')
+            BrowserServices.Instance.browser.go_to("https://google.com")
         except TimeoutException:
             return
-        pytest.fail('Expected TimeoutException')
+        pytest.fail("Expected TimeoutException")
 
     def test_take_screenshot(self):
         DynamicContentForm().open()
@@ -78,15 +78,15 @@ class TestBrowser(TestUI):
 
     def test_execute_java_script(self):
         DynamicContentForm().open()
-        current_url = BrowserServices.Instance.browser.execute_script('return window.location.href')
+        current_url = BrowserServices.Instance.browser.execute_script("return window.location.href")
         assert current_url == DynamicContentForm().url
 
     @pytest.mark.parametrize(
-        argnames='script_path',
+        argnames="script_path",
         argvalues=[
-            pytest.param('get_current_url.js'),
-            pytest.param(Path('get_current_url.js')),
-            pytest.param(Path('resources', 'get_current_url.js')),
+            pytest.param("get_current_url.js"),
+            pytest.param(Path("get_current_url.js")),
+            pytest.param(Path("resources", "get_current_url.js")),
         ],
     )
     def test_execute_java_script_from_file(self, script_path):
@@ -96,7 +96,7 @@ class TestBrowser(TestUI):
         assert current_url == dynamic_content_form.url
 
     def test_execute_java_script_from_predefined_file(self):
-        value_to_set = 'username'
+        value_to_set = "username"
 
         form = AuthenticationForm()
         form.open()
@@ -115,27 +115,27 @@ class TestBrowser(TestUI):
         BrowserServices.Instance.browser.set_windows_size(test_size.width, test_size.height)
 
         current_size = BrowserServices.Instance.browser.driver.get_window_size()
-        assert current_size['height'] < init_size['height']
-        assert current_size['height'] < init_size['width']
-        assert current_size['width'] >= test_size.width
+        assert current_size["height"] < init_size["height"]
+        assert current_size["height"] < init_size["width"]
+        assert current_size["width"] >= test_size.width
 
         BrowserServices.Instance.browser.maximize()
-        if BrowserServices.Instance.browser.driver.execute_script('return navigator.plugins.length == 0'):
+        if BrowserServices.Instance.browser.driver.execute_script("return navigator.plugins.length == 0"):
             # No available maximize in headless mode
             BrowserServices.Instance.browser.set_windows_size(1920, 1080)
 
         current_size = BrowserServices.Instance.browser.driver.get_window_size()
-        assert current_size['height'] > init_size['height']
-        assert current_size['height'] > init_size['width']
-        assert current_size['width'] != test_size.width
-        assert current_size['height'] != test_size.height
+        assert current_size["height"] > init_size["height"]
+        assert current_size["height"] > init_size["width"]
+        assert current_size["width"] != test_size.width
+        assert current_size["height"] != test_size.height
 
         BrowserServices.Instance.browser.set_windows_size(default_size.width, default_size.height)
         current_size = BrowserServices.Instance.browser.driver.get_window_size()
-        assert current_size['width'] == default_size.width
-        assert current_size['height'] == default_size.height
+        assert current_size["width"] == default_size.width
+        assert current_size["height"] == default_size.height
 
-    @pytest.mark.skip(reason='NotImplemented for Visual')
+    @pytest.mark.skip(reason="NotImplemented for Visual")
     def test_scroll_window_by(self):
         form = InfiniteScrollForm()
         form.open()
@@ -143,17 +143,17 @@ class TestBrowser(TestUI):
         default_count = len(form.example_labels)
 
         def _predicate():
-            height = form.size['height']
+            height = form.size["height"]
             BrowserServices.Instance.browser.scroll_windows_by(0, height)
             return len(form.example_labels) > default_count
 
         BrowserServices.Instance.conditional_wait.wait_for_true(_predicate)
 
     def test_get_browser_name(self):
-        profile_name = EnvironmentConfiguration.get_variable('profile')
-        settings_profile = 'settings.json' if not profile_name else f'settings.{profile_name}.json'
+        profile_name = EnvironmentConfiguration.get_variable("profile")
+        settings_profile = "settings.json" if not profile_name else f"settings.{profile_name}.json"
         json_settings = JsonSettingsFile(setting_name=settings_profile, root_path=RootPathHelper.calling_root_path())
-        assert json_settings.get('browserName') == BrowserServices.Instance.browser.browser_name
+        assert json_settings.get("browserName") == BrowserServices.Instance.browser.browser_name
 
     def test_set_implicit_wait(self):
         WelcomeForm().open()
@@ -162,14 +162,14 @@ class TestBrowser(TestUI):
 
         with Timer() as timer:
             try:
-                BrowserServices.Instance.browser.driver.find_element(By.ID, 'not_exist_element')
+                BrowserServices.Instance.browser.driver.find_element(By.ID, "not_exist_element")
             except NoSuchElementException:
                 ...
         elapsed = timer.elapsed.total_seconds()
         assert (
             elapsed < wait_time + 2
-        ), f'Elapsed time should be less than implicit timeout + 2 sec(accuracy). Elapsed time: {elapsed}'
-        assert elapsed >= wait_time, 'Elapsed time should be greater or equal than implicit timeout'
+        ), f"Elapsed time should be less than implicit timeout + 2 sec(accuracy). Elapsed time: {elapsed}"
+        assert elapsed >= wait_time, "Elapsed time should be greater or equal than implicit timeout"
 
     def test_get_download_dir(self):
-        assert 'downloads' in BrowserServices.Instance.browser.download_directory
+        assert "downloads" in BrowserServices.Instance.browser.download_directory

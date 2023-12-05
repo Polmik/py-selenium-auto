@@ -9,13 +9,13 @@ from py_selenium_auto.forms.form import Form
 
 
 class TheInternetForm(Form):
-    _base_url: str = 'https://the-internet.herokuapp.com/'
+    _base_url: str = "https://the-internet.herokuapp.com/"
 
     def __init__(self, locator: Locator, name: str):
         super().__init__(locator, name)
         self.elemental_selenium_link: Link = Link(
             Locator(By.XPATH, "//a[contains(@href,'elementalselenium')]"),
-            'Elemental Selenium',
+            "Elemental Selenium",
         )
 
     @property

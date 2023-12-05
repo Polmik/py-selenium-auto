@@ -18,7 +18,7 @@ class CheckBox(CheckableElement):
 
     @property
     def element_type(self) -> str:
-        return self.localization_manager.get_localized_message('loc.checkbox')
+        return self.localization_manager.get_localized_message("loc.checkbox")
 
     def check(self):
         """Performs check action on the element."""
@@ -33,6 +33,6 @@ class CheckBox(CheckableElement):
         self.set_state(not self._get_state())
 
     def set_state(self, state: bool):
-        self.log_element_action('loc.setting.value', state)
+        self.log_element_action("loc.setting.value", state)
         if state is not self._get_state():
             self.click()

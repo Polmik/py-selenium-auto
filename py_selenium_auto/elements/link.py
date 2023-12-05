@@ -12,9 +12,9 @@ class Link(Element):
 
     @property
     def element_type(self) -> str:
-        return self.localization_manager.get_localized_message('loc.link')
+        return self.localization_manager.get_localized_message("loc.link")
 
     @property
     def href(self) -> str:
         """Gets value of href attribute."""
-        return self.get_attribute('href')
+        return self.get_attribute("href")

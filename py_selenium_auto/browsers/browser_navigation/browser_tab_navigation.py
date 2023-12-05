@@ -22,7 +22,7 @@ class BrowserTabNavigation:
         :returns:
             Current tab handle
         """
-        self._logger.info('loc.browser.get.tab.handle')
+        self._logger.info("loc.browser.get.tab.handle")
         return self._driver.current_window_handle
 
     @property
@@ -32,12 +32,12 @@ class BrowserTabNavigation:
         :returns:
             List of tab handles
         """
-        self._logger.info('loc.browser.get.tab.handles')
+        self._logger.info("loc.browser.get.tab.handles")
         return self._driver.window_handles
 
     def close_tab(self):
         """Closes current tab."""
-        self._logger.info('loc.browser.tab.close')
+        self._logger.info("loc.browser.tab.close")
         tabs_count = len(self.tab_handles)
         self._driver.close()
         # Switch focus to last tab after closing current tab
@@ -50,9 +50,9 @@ class BrowserTabNavigation:
         :arg:
             switch_to_new: Switches to new tab if true and stays at current otherwise
         """
-        self._logger.info('loc.browser.tab.open.new')
+        self._logger.info("loc.browser.tab.open.new")
         current_handle = None if switch_to_new else self.current_tab_handle
-        self._driver.switch_to.new_window('tab')
+        self._driver.switch_to.new_window("tab")
         if not switch_to_new:
             self._close_and_switch(current_handle, False)
 
@@ -62,7 +62,7 @@ class BrowserTabNavigation:
         :arg:
             switch_to_new: Switches to new tab if true and stays at current otherwise
         """
-        self._logger.info('loc.browser.tab.open.new')
+        self._logger.info("loc.browser.tab.open.new")
         self._driver.execute_script(JavaScript.OpenNewTab.script_from_file)
         if switch_to_new:
             self.switch_to_last_tab()
@@ -90,7 +90,7 @@ class BrowserTabNavigation:
         :arg:
             close_current: Close current tab if true and leave it otherwise
         """
-        self._logger.info('loc.browser.switch.to.new.tab')
+        self._logger.info("loc.browser.switch.to.new.tab")
         self._close_and_switch(self.tab_handles[0], close_current)
 
     def switch_to_last_tab(self, close_current: bool = False):
@@ -99,7 +99,7 @@ class BrowserTabNavigation:
         :arg:
             close_current: Close current tab if true and leave it otherwise
         """
-        self._logger.info('loc.browser.switch.to.new.tab')
+        self._logger.info("loc.browser.switch.to.new.tab")
         self._close_and_switch(self.tab_handles[-1], close_current)
 
     @overload
@@ -122,14 +122,14 @@ class BrowserTabNavigation:
 
         if isinstance(index_or_name, int):
             index = index_or_name
-            self._logger.info('loc.browser.switch.to.tab.index', index)
+            self._logger.info("loc.browser.switch.to.tab.index", index)
             names = self.tab_handles
             if index < 0 or len(names) <= index:
                 raise IndexError(f"Index of browser tab '{index}' you provided is out of range 0..{len(names)}")
             new_tab = names[index]
         elif isinstance(index_or_name, str):
             new_tab = index_or_name
-            self._logger.info('loc.browser.switch.to.tab.handle', new_tab)
+            self._logger.info("loc.browser.switch.to.tab.handle", new_tab)
 
         self._close_and_switch(new_tab, close_current)
 

@@ -1,3 +1,6 @@
+v0.4.5
+* Removed UseWebdriverManager param. Webdriver Manager will always download the specified driver version
+
 v0.4.4
 * Updated py-selenium-auto-core==0.5.4
 * Fixed BrowserServices.Instance.set_startup to set a new value

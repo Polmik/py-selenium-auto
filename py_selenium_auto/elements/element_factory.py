@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     )
     from py_selenium_auto_core.waitings.conditional_wait import ConditionalWait
 
-T = TypeVar('T', bound=Element, covariant=True)
+T = TypeVar("T", bound=Element, covariant=True)
 
 
 class ElementFactory(CoreElementFactory):
@@ -43,9 +43,9 @@ class ElementFactory(CoreElementFactory):
 
     def __init__(
         self,
-        conditional_wait: 'ConditionalWait',
-        element_finder: 'ElementFinder',
-        localization_manager: 'LocalizationManager',
+        conditional_wait: "ConditionalWait",
+        element_finder: "ElementFinder",
+        localization_manager: "LocalizationManager",
     ):
         super().__init__(conditional_wait, element_finder, localization_manager)
 
@@ -55,12 +55,12 @@ class ElementFactory(CoreElementFactory):
         elif locator.by == By.CSS_SELECTOR:
             xpath_locator = self._conditional_wait.wait_for_driver(
                 lambda driver: driver.execute_script(JavaScript.GetXPathFromCss.script_from_file, locator.value),
-                message='XPath generation failed from CSS',
+                message="XPath generation failed from CSS",
             )
         else:
             xpath_locator = self._conditional_wait.wait_for_driver(
                 lambda driver: driver.execute_script(JavaScript.GetElementXPath.script_from_file, web_element),
-                message='XPath generation failed',
+                message="XPath generation failed",
             )
         return Locator(By.XPATH, xpath_locator)
 

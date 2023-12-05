@@ -14,22 +14,22 @@ class TestBrowserService:
         BrowserServices.Instance.browser.wait_for_page_to_load()
 
     def test_should_be_able_check_is_browser_not_started(self):
-        assert not BrowserServices.Instance.is_browser_started, 'Browser is started'
+        assert not BrowserServices.Instance.is_browser_started, "Browser is started"
 
     def test_should_be_able_check_is_browser_started(self):
         BrowserServices.Instance.browser.wait_for_page_to_load()
-        assert BrowserServices.Instance.is_browser_started, 'Browser is not started'
+        assert BrowserServices.Instance.is_browser_started, "Browser is not started"
 
     @pytest.mark.parametrize(
-        argnames=('logger_method', 'args'),
+        argnames=("logger_method", "args"),
         argvalues=[
-            (BrowserServices.Instance.logger.info, ['Message']),
-            (BrowserServices.Instance.logger.debug, ['Message']),
-            (BrowserServices.Instance.logger.debug, ['Message', Exception('Exc')]),
-            (BrowserServices.Instance.logger.warn, ['Message']),
-            (BrowserServices.Instance.logger.error, ['Message']),
-            (BrowserServices.Instance.logger.fatal, ['Message']),
-            (BrowserServices.Instance.logger.fatal, ['Message', Exception('Exc')]),
+            (BrowserServices.Instance.logger.info, ["Message"]),
+            (BrowserServices.Instance.logger.debug, ["Message"]),
+            (BrowserServices.Instance.logger.debug, ["Message", Exception("Exc")]),
+            (BrowserServices.Instance.logger.warn, ["Message"]),
+            (BrowserServices.Instance.logger.error, ["Message"]),
+            (BrowserServices.Instance.logger.fatal, ["Message"]),
+            (BrowserServices.Instance.logger.fatal, ["Message", Exception("Exc")]),
         ],
     )
     def test_should_be_able_to_get_logger(self, logger_method: Callable, args):
@@ -39,15 +39,15 @@ class TestBrowserService:
         BrowserServices.Instance.conditional_wait.wait_for_true(lambda: True)
 
     @pytest.mark.parametrize(
-        argnames=('logger_method', 'args'),
+        argnames=("logger_method", "args"),
         argvalues=[
-            (BrowserServices.Instance.localized_logger.info, ['Message']),
-            (BrowserServices.Instance.localized_logger.debug, ['Message']),
-            (BrowserServices.Instance.localized_logger.debug, ['Message', Exception('Exc')]),
-            (BrowserServices.Instance.localized_logger.warn, ['Message']),
-            (BrowserServices.Instance.localized_logger.error, ['Message']),
-            (BrowserServices.Instance.localized_logger.fatal, ['Message']),
-            (BrowserServices.Instance.localized_logger.fatal, ['Message', Exception('Exc')]),
+            (BrowserServices.Instance.localized_logger.info, ["Message"]),
+            (BrowserServices.Instance.localized_logger.debug, ["Message"]),
+            (BrowserServices.Instance.localized_logger.debug, ["Message", Exception("Exc")]),
+            (BrowserServices.Instance.localized_logger.warn, ["Message"]),
+            (BrowserServices.Instance.localized_logger.error, ["Message"]),
+            (BrowserServices.Instance.localized_logger.fatal, ["Message"]),
+            (BrowserServices.Instance.localized_logger.fatal, ["Message", Exception("Exc")]),
         ],
     )
     def test_should_be_able_to_get_localized_logger(self, logger_method: Callable, args):
