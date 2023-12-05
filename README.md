@@ -12,6 +12,11 @@
 
 This package is a library designed to simplify your work with Selenium WebDriver and based on [py-selenium-auto-core](https://github.com/Polmik/py-selenium-auto-core) solution.
 
+### Supported browsers
+* Chrome
+
+**Note: Support for popular browsers will be expanded in the future**
+
 ### Supported Python Versions
 
 * Python 3.7-3.9
@@ -49,12 +54,13 @@ def setup_session(request):
 
 It's necessary to set root dir for your test directory. It is assumed that your project structure will look like this:
 ```
-src
+src/
     __init__.py
-    some_code
-test
+    some_code/
+tests/  # Any name
     __init__.py
-    some_code
+    resources/
+    some_code/
 ```
 3. Create instance of Browser in your test:
 ```python
@@ -82,6 +88,11 @@ my_text_box.type("example@email.com")
 ```python
 browser.quit()
 ```
+
+### Configuration
+This file is used to configure your browser settings, as well as other settings.By default, your solution will use the file from this project.
+
+Copy the [following file](https://github.com/Polmik/py-selenium-auto/blob/main/py_selenium_auto/resources/settings.json) to your solution in `tests/resources` to configure it yourself
 
 ### License
 Library's source code is made available under the [Apache 2.0 license](https://github.com/Polmik/py-selenium-auto/blob/main/LICENSE).
