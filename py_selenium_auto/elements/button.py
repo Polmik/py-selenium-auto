@@ -12,4 +12,4 @@ class Button(Element):
 
     @property
     def element_type(self) -> str:
-        return self.localization_manager.get_localized_message('loc.button')
+        return self.localization_manager.get_localized_message("loc.button")

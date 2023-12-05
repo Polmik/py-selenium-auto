@@ -11,13 +11,13 @@ from py_selenium_auto.logging.log_level import LogLevel
 
 
 class TestLocalizationManager:
-    log_path = os.path.join(Path(RootPathHelper.calling_root_path()).parent, 'Log', 'log.log')
+    log_path = os.path.join(Path(RootPathHelper.calling_root_path()).parent, "Log", "log.log")
     navigation_message = "Navigate to URL - 'test'"
-    test_url = 'test'
-    navigation_key = 'loc.browser.navigate'
+    test_url = "test"
+    navigation_key = "loc.browser.navigate"
 
     @pytest.mark.parametrize(
-        'log_level',
+        "log_level",
         [
             LogLevel.Info,
             LogLevel.Debug,
@@ -39,20 +39,20 @@ class TestLocalizationManager:
         elif log_level == LogLevel.Warn:
             localized_logger.warn(self.navigation_key, self.test_url)
         else:
-            raise ValueError(f'Cannot process log level: {log_level}')
+            raise ValueError(f"Cannot process log level: {log_level}")
 
-        assert os.path.exists(self.log_path), 'Log should exist'
-        with open(self.log_path, 'r', encoding='utf-8') as file:
+        assert os.path.exists(self.log_path), "Log should exist"
+        with open(self.log_path, "r", encoding="utf-8") as file:
             log_message = file.read()
         # Example: '2023-10-21 13:07:40,653 [root] [INFO ]  Navigate to URL - 'test''
-        results = re.findall(f'.*?{log_level.value}.*?{self.navigation_message}', log_message)
+        results = re.findall(f".*?{log_level.value}.*?{self.navigation_message}", log_message)
         assert (
             len(results) > 0
-        ), f'Message should be localized. Expected: {self.navigation_message}, actual: {log_message}'
+        ), f"Message should be localized. Expected: {self.navigation_message}, actual: {log_message}"
 
     def test_should_be_able_to_localize_logger_message(self):
         message = BrowserServices.Instance.service_provider.localization_manager().get_localized_message(
             self.navigation_key,
             self.test_url,
         )
-        assert message == self.navigation_message, 'Message should be localized'
+        assert message == self.navigation_message, "Message should be localized"

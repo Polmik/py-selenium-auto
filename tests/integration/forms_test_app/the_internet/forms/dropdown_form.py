@@ -8,11 +8,11 @@ from tests.integration.forms_test_app.the_internet.forms.the_internet_from impor
 class DropdownForm(TheInternetForm):
     def __init__(self):
         super().__init__(
-            Locator(By.ID, 'content'),
-            'Dropdown',
+            Locator(By.ID, "content"),
+            "Dropdown",
         )
-        self.dropdown = ComboBox(Locator(By.ID, 'dropdown'), 'dropdown')
+        self.dropdown = ComboBox(Locator(By.ID, "dropdown"), "dropdown")
 
     @property
     def _url_part(self) -> str:
-        return 'dropdown'
+        return "dropdown"

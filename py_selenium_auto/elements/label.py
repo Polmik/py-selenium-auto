@@ -12,4 +12,4 @@ class Label(Element):
 
     @property
     def element_type(self) -> str:
-        return self.localization_manager.get_localized_message('loc.label')
+        return self.localization_manager.get_localized_message("loc.label")

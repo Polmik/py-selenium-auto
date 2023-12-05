@@ -32,12 +32,12 @@ if typing.TYPE_CHECKING:
     from py_selenium_auto.elements.element_factory import ElementFactory
 
 
-
 class Element(CoreElement, abc.ABC):
     """Defines base class for any UI element."""
-    
+
     def __browser_service(self):
         from py_selenium_auto.browsers.browser_services import BrowserServices
+
         return BrowserServices.Instance
 
     @property
@@ -87,11 +87,11 @@ class Element(CoreElement, abc.ABC):
         return self.__browser_service().service_provider.action_retrier()
 
     @property
-    def custom_factory(self) -> 'ElementFactory':
+    def custom_factory(self) -> "ElementFactory":
         return self.__browser_service().service_provider.element_factory()
 
     @property
-    def factory(self) -> 'ElementFactory':
+    def factory(self) -> "ElementFactory":
         return self.custom_factory
 
     @property
@@ -130,43 +130,43 @@ class Element(CoreElement, abc.ABC):
 
     def click(self):
         """Clicks the element."""
-        self.log_element_action('loc.clicking')
+        self.log_element_action("loc.clicking")
         self.js_actions.highlight_element()
         self.do_with_retry(lambda: self.get_element().click())
 
     def focus(self):
         """Set focus on element."""
-        self.log_element_action('loc.focusing')
+        self.log_element_action("loc.focusing")
         self.js_actions.set_focus()
 
     def get_attribute(self, attr: str, highlight_state: HighlightState = HighlightState.Default) -> str:
         """Gets element attribute value by its name."""
-        self.log_element_action('loc.el.getattr', attr)
+        self.log_element_action("loc.el.getattr", attr)
         self.js_actions.highlight_element(highlight_state)
         value = self.do_with_retry(lambda: self.get_element().get_attribute(attr))
-        self.log_element_action('loc.el.attr.value', attr, value)
+        self.log_element_action("loc.el.attr.value", attr, value)
         return value
 
     def get_css_value(self, property_name: str, highlight_state: HighlightState = HighlightState.Default) -> str:
         """Gets css value of the element."""
-        self.log_element_action('loc.el.cssvalue', property_name)
+        self.log_element_action("loc.el.cssvalue", property_name)
         self.js_actions.highlight_element(highlight_state)
         value = self.do_with_retry(lambda: self.get_element().value_of_css_property(property_name))
-        self.log_element_action('loc.el.attr.value', property_name, value)
+        self.log_element_action("loc.el.attr.value", property_name, value)
         return value
 
     def get_text(self, highlight_state: HighlightState = HighlightState.Default) -> str:
         """Gets element text."""
-        self.log_element_action('loc.get.text')
+        self.log_element_action("loc.get.text")
         self.js_actions.highlight_element(highlight_state)
         value = self.do_with_retry(lambda: self.get_element().text)
-        self.log_element_action('loc.text.value', value)
+        self.log_element_action("loc.text.value", value)
         return value
 
     def send_inner_html(self, value: str):
         """Sets element inner HTML."""
         self.click()
-        self.log_element_action(f'Setting text - {value}')
+        self.log_element_action(f"Setting text - {value}")
         self._browser.execute_script(JavaScript.SetInnerHTML, self.get_element(), value)
 
     def send_key(self):
@@ -174,13 +174,13 @@ class Element(CoreElement, abc.ABC):
 
     def expand_shadow_root(self) -> ShadowRoot:
         """Expands shadow roo."""
-        self.log_element_action('loc.shadowroot.expand')
+        self.log_element_action("loc.shadowroot.expand")
         shadow_root = self.get_element().shadow_root
         return shadow_root
 
     def find_element_in_shadow_root(
         self,
-        element_type: typing.Type['Element'],
+        element_type: typing.Type["Element"],
         locator: Locator,
         name: str,
         state: ElementState = ElementState.Displayed,

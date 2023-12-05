@@ -6,22 +6,22 @@ from tests.integration.forms_test_app.the_internet.forms.the_internet_from impor
 
 
 class BasicAuthForm(TheInternetForm):
-    user_and_pass: str = 'admin'
-    domain: str = 'the-internet.herokuapp.com'
+    user_and_pass: str = "admin"
+    domain: str = "the-internet.herokuapp.com"
 
     def __init__(self):
         super().__init__(
-            Locator(By.ID, 'content'),
-            'BasicAuth',
+            Locator(By.ID, "content"),
+            "BasicAuth",
         )
         self._congratulations_label: Label = Label(
             Locator(By.XPATH, "//p[contains(., 'Congratulations')]"),
-            'Congratulations',
+            "Congratulations",
         )
 
     @property
     def _url_part(self) -> str:
-        return 'basic_auth'
+        return "basic_auth"
 
     @property
     def is_congratulations_present(self) -> bool:

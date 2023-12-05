@@ -10,13 +10,13 @@ class AddRemoveElementsForm(TheInternetForm):
     def __init__(self):
         super().__init__(
             Locator.by_xpath("//h3[contains(.,'Add/Remove Elements')]"),
-            'AddRemoveElements',
+            "AddRemoveElements",
         )
-        self.add_button: Button = Button(Locator.by_xpath("//button[contains(@onclick,'addElement')]"), 'Add element')
+        self.add_button: Button = Button(Locator.by_xpath("//button[contains(@onclick,'addElement')]"), "Add element")
 
     @property
     def _url_part(self) -> str:
-        return 'add_remove_elements/'
+        return "add_remove_elements/"
 
     @property
     def list_of_delete_buttons(self) -> List[Button]:

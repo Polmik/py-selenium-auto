@@ -9,13 +9,13 @@ class HomeDemoSiteForm(TheDemoSiteForm):
     def __init__(self):
         super().__init__(
             Locator(By.XPATH, "//strong[contains(.,'1. Home ')]"),
-            'Home',
+            "Home",
         )
         self.first_scrollable_example: Label = Label(
             Locator(By.XPATH, "//div[@align='center']//tr[.//strong[contains(.,'index.php')]]//div[@align='left']"),
-            'First example',
+            "First example",
         )
 
     @property
     def _url_part(self) -> str:
-        return ''
+        return ""

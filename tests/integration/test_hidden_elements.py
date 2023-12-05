@@ -28,7 +28,7 @@ class TestHiddenElements(TestUI):
     def test_check_that_hidden_element_exists(self):
         assert self.form.get_hidden_element(HoverExample.First, ElementState.ExistsInAnyState).state.is_exist()
 
-    @pytest.mark.parametrize(argnames='element_provider', argvalues=element_functions)
+    @pytest.mark.parametrize(argnames="element_provider", argvalues=element_functions)
     def test_check_that_hidden_elements_exists(self, element_provider: Callable[[Any, Any], List[Label]]):
         elements = element_provider(ElementState.ExistsInAnyState, ElementsCount.MoreThenZero)
         assert elements

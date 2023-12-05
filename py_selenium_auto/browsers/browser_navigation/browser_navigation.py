@@ -11,12 +11,12 @@ class BrowserNavigation:
 
     def back(self):
         """Navigates back."""
-        self._logger.info('loc.browser.back')
+        self._logger.info("loc.browser.back")
         self._driver.back()
 
     def forward(self):
         """Navigates forward."""
-        self._logger.info('loc.browser.forward')
+        self._logger.info("loc.browser.forward")
         self._driver.forward()
 
     def go_to_url(self, url: str):
@@ -25,10 +25,10 @@ class BrowserNavigation:
         :arg:
             url: String representation of URL
         """
-        self._logger.info('loc.browser.navigate', url)
+        self._logger.info("loc.browser.navigate", url)
         self._driver.get(url)
 
     def refresh(self):
         """Refreshes current page."""
-        self._logger.info('loc.browser.refresh')
+        self._logger.info("loc.browser.refresh")
         self._driver.refresh()

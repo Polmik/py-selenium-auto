@@ -12,4 +12,4 @@ class RadioButton(CheckableElement):
 
     @property
     def element_type(self) -> str:
-        return self.localization_manager.get_localized_message('loc.radio')
+        return self.localization_manager.get_localized_message("loc.radio")

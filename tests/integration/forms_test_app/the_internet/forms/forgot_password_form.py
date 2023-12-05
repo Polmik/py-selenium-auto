@@ -9,12 +9,12 @@ from tests.integration.forms_test_app.the_internet.forms.the_internet_from impor
 class ForgotPasswordForm(TheInternetForm):
     def __init__(self):
         super().__init__(
-            Locator(By.ID, 'checkboxes'),
-            'ForgotPassword',
+            Locator(By.ID, "checkboxes"),
+            "ForgotPassword",
         )
-        self.email_text_box = TextBox(Locator(By.ID, 'email'), 'email')
-        self._retrieve_password_button = Button(Locator(By.ID, 'form_submit'), 'form_submit')
+        self.email_text_box = TextBox(Locator(By.ID, "email"), "email")
+        self._retrieve_password_button = Button(Locator(By.ID, "form_submit"), "form_submit")
 
     @property
     def _url_part(self) -> str:
-        return 'forgot_password'
+        return "forgot_password"

@@ -31,10 +31,10 @@ class BrowserFactory(abc.ABC):
     @property
     @abc.abstractmethod
     def _driver(self) -> WebDriver:
-        raise NotImplementedError('Abstract method')
+        raise NotImplementedError("Abstract method")
 
     @property
-    def browser(self) -> 'Browser':
+    def browser(self) -> "Browser":
         """Creates instance of Browser.
 
         :returns:
@@ -43,5 +43,5 @@ class BrowserFactory(abc.ABC):
         from py_selenium_auto.browsers.browser import Browser
 
         browser = Browser(self._action_retrier.do_with_retry(lambda: self._driver, [WebDriverException]))
-        self._localized_logger.info('loc.browser.ready', self._browser_profile.browser_name)
+        self._localized_logger.info("loc.browser.ready", self._browser_profile.browser_name)
         return browser

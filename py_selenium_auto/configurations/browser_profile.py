@@ -12,22 +12,22 @@ class BrowserProfile:
 
     @property
     def browser_name(self) -> str:
-        return self.__settings_file.get('browserName')
+        return self.__settings_file.get("browserName")
 
     @property
     def is_remote(self) -> bool:
-        return self.__settings_file.get('isRemote')
+        return self.__settings_file.get("isRemote")
 
     @property
     def remote_connection_utl(self) -> str:
-        return self.__settings_file.get('remoteConnectionUtl')
+        return self.__settings_file.get("remoteConnectionUtl")
 
     @property
     def is_element_highlight_enabled(self) -> bool:
-        return self.__settings_file.get('isElementHighlightEnabled')
+        return self.__settings_file.get("isElementHighlightEnabled")
 
     @property
     def driver_settings(self) -> DriverSettings:
-        if self.browser_name.lower() == 'chrome':
+        if self.browser_name.lower() == "chrome":
             return ChromeSettings(self.__settings_file)
-        raise ValueError(f'No assigned behaviour for retrieving DriverSettings for browser {self.browser_name}')
+        raise ValueError(f"No assigned behaviour for retrieving DriverSettings for browser {self.browser_name}")

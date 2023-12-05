@@ -97,9 +97,9 @@ class Browser(Application):
         :returns:
             String representation of page URL
         """
-        self._logger.info('loc.browser.getUrl')
+        self._logger.info("loc.browser.getUrl")
         url = self.driver.current_url
-        self._logger.info('loc.browser.url.value', url)
+        self._logger.info("loc.browser.url.value", url)
         return url
 
     def set_implicit_wait_timeout(self, timeout: float):
@@ -139,7 +139,7 @@ class Browser(Application):
 
     def quit(self):
         """Quit web browser."""
-        self._logger.info('loc.browser.driver.quit')
+        self._logger.info("loc.browser.driver.quit")
         if self.driver is not None:
             self.driver.quit()
         self.driver.session_id = None
@@ -185,22 +185,22 @@ class Browser(Application):
             NoAlertPresentException: Thrown when no alert found
         """
         try:
-            self._logger.info(f'loc.browser.alert.{alert_action.name.lower()}')
+            self._logger.info(f"loc.browser.alert.{alert_action.name.lower()}")
             alert = self.driver.switch_to.alert
             if text:
-                self._logger.info('loc.send.text', text)
+                self._logger.info("loc.send.text", text)
                 alert.send_keys(text)
             if alert_action == AlertAction.Accept:
                 alert.accept()
             else:
                 alert.dismiss()
         except NoAlertPresentException as e:
-            self._logger.fatal('loc.browser.alert.fail', e)
+            self._logger.fatal("loc.browser.alert.fail", e)
             raise e
 
     def maximize(self):
         """Maximizes web page."""
-        self._logger.info('loc.browser.maximize')
+        self._logger.info("loc.browser.maximize")
         self.driver.maximize_window()
 
     def wait_for_page_to_load(self):
@@ -209,11 +209,11 @@ class Browser(Application):
         Exception:
             TimeoutException: Throws when timeout exceeded and page is not loaded
         """
-        self._logger.info('loc.browser.page.wait')
+        self._logger.info("loc.browser.page.wait")
         self._conditional_wait.wait_for_true(
             function=lambda: self.execute_script(JavaScript.IsPageLoaded),
             timeout=self.__page_load_timeout,
-            message='Page loading timed out',
+            message="Page loading timed out",
         )
 
     def get_screenshot(self) -> bytes:
