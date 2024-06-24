@@ -19,7 +19,7 @@ This package is a library designed to simplify your work with Selenium WebDriver
 
 ### Supported Python Versions
 
-* Python 3.7-3.9
+* Python 3.7-3.12
 
 ### Installation 
 
