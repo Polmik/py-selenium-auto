@@ -1,5 +1,5 @@
 v0.4.6
-* Updated py-selenium-auto-core==0.5.4
+* Updated py-selenium-auto-core==0.5.5
     Added Python 3.12 Support
 * Updated requirements
     Changed dependency-injector to dependency-injector-fork
