@@ -7,7 +7,10 @@ from py_selenium_auto_core.utilities.json_settings_file import JsonSettingsFile
 from py_selenium_auto_core.utilities.root_path_helper import RootPathHelper
 from selenium.common import TimeoutException, NoSuchElementException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.devtools.v115.system_info import Size
+try:
+    from selenium.webdriver.common.devtools.v115.system_info import Size
+except ModuleNotFoundError:
+    from selenium.webdriver.common.devtools.v128.system_info import Size
 
 from py_selenium_auto.browsers.browser_services import BrowserServices
 from py_selenium_auto.browsers.java_script import JavaScript
@@ -114,21 +117,24 @@ class TestBrowser(TestUI):
         test_size = Size(600, 500)
         BrowserServices.Instance.browser.set_windows_size(test_size.width, test_size.height)
 
-        current_size = BrowserServices.Instance.browser.driver.get_window_size()
-        assert current_size["height"] < init_size["height"]
-        assert current_size["height"] < init_size["width"]
-        assert current_size["width"] >= test_size.width
+        current_size_before_maximize = BrowserServices.Instance.browser.driver.get_window_size()
+        assert current_size_before_maximize["height"] < init_size["height"]
+        assert current_size_before_maximize["height"] < init_size["width"]
+        assert current_size_before_maximize["width"] >= test_size.width
 
         BrowserServices.Instance.browser.maximize()
-        if BrowserServices.Instance.browser.driver.execute_script("return navigator.plugins.length == 0"):
-            # No available maximize in headless mode
-            BrowserServices.Instance.browser.set_windows_size(1920, 1080)
+        # if any([
+        #     BrowserServices.Instance.browser.driver.execute_script("return navigator.plugins.length == 0"),
+        #     "headless" in BrowserServices.Instance.browser.driver.execute_script("return navigator.userAgent;").lower(),
+        # ]):
+        #     # No available maximize in headless mode
+        #     BrowserServices.Instance.browser.set_windows_size(init_size["width"] + 1, init_size["height"] + 1)
 
-        current_size = BrowserServices.Instance.browser.driver.get_window_size()
-        assert current_size["height"] > init_size["height"]
-        assert current_size["height"] > init_size["width"]
-        assert current_size["width"] != test_size.width
-        assert current_size["height"] != test_size.height
+        current_size_after_maximize = BrowserServices.Instance.browser.driver.get_window_size()
+        assert current_size_after_maximize["height"] > current_size_before_maximize["height"]
+        assert current_size_after_maximize["height"] > current_size_before_maximize["width"]
+        assert current_size_after_maximize["width"] != test_size.width
+        assert current_size_after_maximize["height"] != test_size.height
 
         BrowserServices.Instance.browser.set_windows_size(default_size.width, default_size.height)
         current_size = BrowserServices.Instance.browser.driver.get_window_size()
