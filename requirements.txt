@@ -5,4 +5,5 @@ selenium==4.11.2; python_version <= '3.7'
 selenium==4.24.0; python_version > '3.7'
 webdriver-manager==4.0.2
 dependency-injector-fork==4.42.1
+py-selenium-auto-core==0.5.6
 pytest-xdist==3.5.0
